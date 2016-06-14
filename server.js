@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+// Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 
 // View engine setup
