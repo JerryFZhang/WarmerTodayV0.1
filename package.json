@@ -1,7 +1,7 @@
 {
   "name": "warmerforweb",
   "version": "1.0.0",
-  "description": "",
+  "description": "A new type of weather application. The final product of this will be uploaded on AppStore as a free download.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/zhang96/WarmerForWeb.git"
   },
-  "author": "",
+  "author": "zhang96",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zhang96/WarmerForWeb/issues"
@@ -18,5 +18,6 @@
   "homepage": "https://github.com/zhang96/WarmerForWeb#readme",
   "dependencies": {
     "node": "0.0.0"
-  }
+  },
+  "devDependencies": {}
 }
