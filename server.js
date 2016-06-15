@@ -5,15 +5,18 @@ var path = require('path');
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 
-// View engine setup
+//// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');//Set the view engine to ejs for renderring html content.
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Default landing page
 app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.use('/static', express.static('public'));
 
 // Custom 404 page.
 app.use(function (req, res){
