@@ -16,6 +16,7 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+//Serving static content directly from public folder, will consider do the same thing for html later as well.
 app.use('/static', express.static('public'));
 
 // Custom 404 page.
