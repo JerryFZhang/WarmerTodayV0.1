@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');//Set the view engine to ejs for renderring html c
 
 // Default landing page
 app.get('/', function(req, res) {
-    res.send('Welcome');
+    res.render('index');
 });
 
 
