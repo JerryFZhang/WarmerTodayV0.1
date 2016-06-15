@@ -1,6 +1,6 @@
 # WarmerForWeb
 A new type of weather application.
-The final product of this will be uploaded on AppStore as a free download.
+The final product of this will be deployed on heroku for public use.
 
 # This is a part of \#100DaysOfCode Challange.
 Warmer apps (iOS, Web and possibly Android) are part of  [Alexander Kallaway's](https://github.com/Kallaway) [\#100DaysOfCode](https://medium.freecodecamp.com/join-the-100daysofcode-556ddb4579e4#.wbpxpj2f5) Challange where I have to code for at least one hour for the next 100days, not limited to warmer app but I will mostly be working on this.
