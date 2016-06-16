@@ -1,56 +1,83 @@
-@text:#CCFFFF;
-@upper-warm:#FF3300;
-@lower-warm:#FF9966;
-@upper-same:#009900;
-@lower-same:#00FF66;
-@upper-cold:#003399;
-@lower-cold:#00CCFF;
-/*NOT LESS YET*/
+//Basic colours
+@text: #CCFFFF;
+
+//Warm
+@warm-base:orange;
+@warm-upper: #FF3300;
+@warm-lower: #FF9966;
+
+//Same
+@same-base: green;
+@same-upper: #009900;
+@same-lower: #00FF66;
+
+//Cold
+@cold-base: blue;
+@cold-upper: #003399;
+@cold-lower: #00CCFF;
+
+
 div {
-    color: #CCFFFF;
+    color: @text;
     text-align: center;
     font-family: sans-serif;
     font-size: 3vh;
 }
 
 .warm {
-    height: 33vh;
-    background: orange;
-    /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(red, yellow);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(red, yellow);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(red, yellow);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#FF3300, #FF9966);
-    /* Standard syntax */
+    height: 100vh;
+    
+    //For browser that does not support gradients
+    background:@warm-base;
+    
+    //Safari 5.1 to 6.0
+    background: -webkit-linear-gradient(@warm-upper, @warm-lower);
+    
+    //Opera 11.1 to 12.0
+    background: -o-linear-gradient(@warm-upper, @warm-lower);
+    
+    //For Firefox 3.6 to 15
+    background: -moz-linear-gradient(@warm-upper, @warm-lower);
+    
+    // Universal syntax
+    background: linear-gradient(@warm-upper, @warm-lower);
+
 }
 
 .same {
-    height: 33vh;
-    background: green;
-    /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(red, yellow);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(red, yellow);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(red, yellow);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#009900, #00FF66);
-    /* Standard syntax */
+    height: 100vh;
+    
+   //For browser that does not support gradients
+    background:@same-base;
+    
+    //Safari 5.1 to 6.0
+    background: -webkit-linear-gradient(@same-upper, @same-lower);
+    
+    //Opera 11.1 to 12.0
+    background: -o-linear-gradient(@same-upper, @same-lower);
+    
+    //For Firefox 3.6 to 15
+    background: -moz-linear-gradient(@same-upper, @same-lower);
+    
+    // Universal syntax
+    background: linear-gradient(@same-upper, @same-lower);
 }
 
 .cold {
-    height: 33vh;
-    background: red;
-    /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(red, yellow);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(red, yellow);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(red, yellow);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#003399, #00CCFF);
-    /* Standard syntax */
+    height: 100vh;
+    
+   //For browser that does not support gradients
+    background:@cold-base;
+    
+    //Safari 5.1 to 6.0
+    background: -webkit-linear-gradient(@cold-upper, @cold-lower);
+    
+    //Opera 11.1 to 12.0
+    background: -o-linear-gradient(@cold-upper, @cold-lower);
+    
+    //For Firefox 3.6 to 15
+    background: -moz-linear-gradient(@cold-upper, @cold-lower);
+    
+    // Universal syntax
+    background: linear-gradient(@cold-upper, @cold-lower);
 }
