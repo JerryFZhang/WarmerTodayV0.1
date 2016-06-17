@@ -1,4 +1,6 @@
 var express = require('express');
+var forecaseIO = require('forecastio');
+var forecaseio = new forecaseIO('**********API KEY*************');
 var app = express();
 var path = require('path');
 
