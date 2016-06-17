@@ -19,7 +19,7 @@
   "dependencies": {
     "ejs": "^2.4.2",
     "express": "^4.14.0",
-    "forecast-io": "^1.0.2",
+    "forecastio": "^1.0.2",
     "node": "0.0.0"
   },
   "devDependencies": {}
