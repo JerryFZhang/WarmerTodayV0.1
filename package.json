@@ -20,7 +20,10 @@
     "ejs": "^2.4.2",
     "express": "^4.14.0",
     "forecastio": "^1.0.2",
-    "node": "0.0.0"
+    "node": "0.0.0",
+    "node-static": "^0.7.7",
+    "nodemon": "^1.9.2",
+    "socket.io": "^1.4.6"
   },
   "devDependencies": {}
 }
