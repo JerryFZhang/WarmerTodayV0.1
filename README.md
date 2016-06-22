@@ -33,6 +33,6 @@ See Issues tab.
 Fengwei Jerry Zhang - zhang96
 
 #License
-TBD
+MIT, see LICENSE.txt.
 
 
