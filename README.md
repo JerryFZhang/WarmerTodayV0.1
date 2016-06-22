@@ -1,6 +1,8 @@
 # WarmerForWeb
 A new type of weather application.
+
 The final product of this will be deployed on heroku for public use.
+
 Powered by [forecase.io](http://forecase.io).
 
 # Acknowlengements
