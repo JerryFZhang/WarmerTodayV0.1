@@ -1,6 +1,7 @@
 # WarmerForWeb
 A new type of weather application.
 The final product of this will be deployed on heroku for public use.
+Powered by [forecase.io](http://forecase.io).
 
 # Acknowlengements
 - [Express.js](http://expressjs.com/)
@@ -8,6 +9,11 @@ The final product of this will be deployed on heroku for public use.
 - [Node with Forecast.io](https://github.com/soplakanets/node-forecastio)
 - [Node.js](https://nodejs.org/en/)
 - [socket.io](http://socket.io/)
+- [lesscss](http://lesscss.org)
+- [forecase.io](http://forecase.io)
+- [nodemon](https://github.com/remy/nodemon)
+- [AngularJS2 - Planned](https://angular.io/)
+- [Bootstrap - Planned](http://getbootstrap.com/)
 
 # This is a part of \#100DaysOfCode Challange.
 Warmer apps (iOS, Web and possibly Android) are part of  [Alexander Kallaway's](https://github.com/Kallaway) [\#100DaysOfCode](https://medium.freecodecamp.com/join-the-100daysofcode-556ddb4579e4#.wbpxpj2f5) Challange where I have to code for at least one hour for the next 100days, not limited to warmer app but I will mostly be working on this.
