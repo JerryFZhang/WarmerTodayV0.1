@@ -3,12 +3,12 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>    -->
-   
+    <!--    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>    -->
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -17,14 +17,17 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    
+
 </head>
+
 <body>
-<!--<div class="container-fluid">-->
-<!--    <h1 class="warm">warm</h1></div>-->
+    <!--<div class="container-fluid">-->
+    <!--    <h1 class="warm">warm</h1></div>-->
     <p class="inner">Data goes here.</p>
-    <button id="current">Request Now Data</button>
-<!--
+    <button id="current">Request Current Data</button>
+    <button id="old">Request Old Data</button>
+
+    <!--
 <div class="container-fluid">
     <h1 class="same">same</h1></div>
 <div class="container-fluid">
@@ -32,15 +35,23 @@
 -->
 </body>
 <script>
-        $('#current').click(function(){
-       
-            $.get('/current',{},function(data){
-            
-                $( "p.inner" ).replaceWith( '<pre>' + data + '</pre>' );
-            
-            });
+    $('#current').click(function () {
+
+        $.get('/current', {}, function (data) {
+
+            $("p.inner").replaceWith('<pre>' + data + '</pre>')
+
         });
-    
-    
-    </script>
+    });
+
+    $('#old').click(function () {
+
+        $.get('/old', {}, function (data) {
+
+            $("p.inner").replaceWith('<pre>' + data + '</pre>')
+
+        });
+    });
+</script>
+
 </html>
