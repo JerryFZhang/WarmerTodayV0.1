@@ -20,11 +20,10 @@
     
 </head>
 <body>
-<div class="container-fluid">
-    <h1 class="warm">warm</h1></div>
-    <section id="dynamic"></section>
-    <h1 class="inner">Data goes here.</h1>
-    <button id="dataRequest">123</button>
+<!--<div class="container-fluid">-->
+<!--    <h1 class="warm">warm</h1></div>-->
+    <p class="inner">Data goes here.</p>
+    <button id="current">Request Now Data</button>
 <!--
 <div class="container-fluid">
     <h1 class="same">same</h1></div>
@@ -33,12 +32,11 @@
 -->
 </body>
 <script>
-        $('#dataRequest').click(function(){
+        $('#current').click(function(){
        
+            $.get('/current',{},function(data){
             
-            $.get('http://localhost:3000/current',{},function(data){
-            
-                console.log(data)
+                $( "p.inner" ).replaceWith( '<pre>' + data + '</pre>' );
             
             });
         });
