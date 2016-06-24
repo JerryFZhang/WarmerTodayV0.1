@@ -25,13 +25,15 @@ app.get('/', function (req, res) {
 app.get('/current', function (req, res) {
     forecastio.forecast('51.506', '-0.127').then(function (data) {
         var weatherInfo = data,
+            weatherInfoStringify = JSON.stringify(data),
             requestedLatitude = data.latitude,
             requestedLongitude = data.longitude,
             currentSummary = data.currently.summary;
         console.log(weatherInfo);
+        console,log(weatherInfoStringify);
         console.log('******');
         console.log(currentSummary);
-    res.send(data);
+    res.send(JSON.stringify(data));
     });
     
 });
