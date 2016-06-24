@@ -15,7 +15,8 @@ Powered by [forecase.io](http://forecase.io).
 - [forecase.io](http://forecase.io)
 - [nodemon](https://github.com/remy/nodemon)
 - [AngularJS2 - Planned](https://angular.io/)
-- [Bootstrap - Planned](http://getbootstrap.com/)
+- [Bootstrap](http://getbootstrap.com/)
+- [jQuery](http://jquery.com)
 
 # This is a part of \#100DaysOfCode Challange.
 Warmer apps (iOS, Web and possibly Android) are part of  [Alexander Kallaway's](https://github.com/Kallaway) [\#100DaysOfCode](https://medium.freecodecamp.com/join-the-100daysofcode-556ddb4579e4#.wbpxpj2f5) Challange where I have to code for at least one hour for the next 100days, not limited to warmer app but I will mostly be working on this.
