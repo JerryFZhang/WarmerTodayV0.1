@@ -20,17 +20,14 @@
         }
 
         function showPosition(position) {
+            console.log(position);
             $("p.location").replaceWith("Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude + '<br>');
             $.ajax({
-                type: 'POST'
-                , data: JSON.stringify(position.coords)
+                url: 'http://localhost:3000/position'
+                , type: 'POST'
+                , data: '{}'
                 , contentType: 'application/json'
-                , url: '/position'
-                , success: function (data) {
-                    console.log('success');
-                    console.log(JSON.stringify(data));
-                }
             });
         }
     </script>

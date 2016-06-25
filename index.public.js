@@ -48,7 +48,7 @@ app.get('/old', function (req, res) {
 })
 
 app.post('/position', function(req, res){
-	console.log('body: ' + JSON.stringify(req.body));
+	console.log('body: ' + req.body.coords.latitude);
 	res.send(req.body);
 });
 
