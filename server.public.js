@@ -47,8 +47,7 @@ app.get('/old', function (req, res) {
 
 })
 
-app.post('/endpoint', function(req, res){
-	var obj = {};
+app.post('/position', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
 	res.send(req.body);
 });
