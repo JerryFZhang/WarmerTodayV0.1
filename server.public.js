@@ -6,6 +6,7 @@ var forecaseio = new forecaseIO('**********API KEY*************');
 
 var app = express();
 var path = require('path');
+var currentLocation;
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -45,6 +46,12 @@ app.get('/old', function (req, res) {
     });
 
 })
+
+app.post('/endpoint', function(req, res){
+	var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	res.send(req.body);
+});
 
 //Serving static content directly from public folder, will consider do the same thing for html later as well.
 app.use('/static', express.static('public'));

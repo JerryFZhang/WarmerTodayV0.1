@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -12,23 +13,34 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        $("p.location").replaceWith("Geolocation is not supported by this browser.");
-    }
-    function showPosition(position) {
-        $("p.location").replaceWith("Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude + '<br>');
-    }
-</script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            $("p.location").replaceWith("Geolocation is not supported by this browser.");
+        }
+
+        function showPosition(position) {
+            $("p.location").replaceWith("Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude + '<br>');
+            $.ajax({
+                type: 'POST'
+                , data: JSON.stringify(position.coords)
+                , contentType: 'application/json'
+                , url: '/position'
+                , success: function (data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
     <!--<div class="container-fluid">-->
     <!--    <h1 class="warm">warm</h1></div>-->
     <p class="inner">Data goes here.</p>
-    <p class="location">Data goes here.</p>
+    <p class="location">Please enable location data.</p>
     <button id="current">Request Current Data</button>
     <button id="old">Request Old Data</button>
     <!--
@@ -39,7 +51,6 @@
     -->
 </body>
 <script>
-    console.log("script2 loaded");
     $('#current').click(function () {
         $.get('/current', {}, function (data) {
             $("p.inner").replaceWith('<pre>' + data + '</pre>')
