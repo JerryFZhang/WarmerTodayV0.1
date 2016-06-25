@@ -18,6 +18,34 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+
+
+    <script>
+        console.log("script 1 loaded");
+        var x = document.getElementById("inner");
+        console.log("element got");
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+                console.log("getting location");
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            console.log("No loca");
+            }
+        }
+
+        function showPosition(position) {
+            
+            console.log("position passed");
+            console.log(position);
+                       $("p.inner").replaceWith("Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            console.log("Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude);
+        }
+    </script>
+
 </head>
 
 <body>
@@ -26,7 +54,9 @@
     <p class="inner">Data goes here.</p>
     <button id="current">Request Current Data</button>
     <button id="old">Request Old Data</button>
+    <button onclick="getLocation()">Get Location</button>
 
+    
     <!--
 <div class="container-fluid">
     <h1 class="same">same</h1></div>
@@ -35,6 +65,7 @@
 -->
 </body>
 <script>
+    console.log("script2 loaded");
     $('#current').click(function () {
 
         $.get('/current', {}, function (data) {
@@ -53,5 +84,6 @@
         });
     });
 </script>
+
 
 </html>
