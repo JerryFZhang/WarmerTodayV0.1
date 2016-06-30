@@ -6,6 +6,9 @@ var forecaseio = new forecaseIO('**********API KEY*************');
 
 var app = express();
 var path = require('path');
+
+
+//Global variable for reording location data passed from the POST activity by /position 
 var currentLocation;
 
 // Set the default port to localhost 3000.
@@ -24,22 +27,23 @@ app.get('/', function (req, res) {
 
 // Serving weather data at the moment using current location.
 app.get('/current', function (req, res) {
+//    var lat = currentLocation.coords.latitude;
+//    var log = currentLocation.coords.longitude;
     forecastio.forecast('51.506', '-0.127').then(function (data) {
-        var weatherInfo = data
+        var weatherInfo = data 
             , weatherInfoStringify = JSON.stringify(data)
             , requestedLatitude = data.latitude
             , requestedLongitude = data.longitude
             , currentSummary = data.currently.summary;
         console.log(weatherInfo);
         console.log(weatherInfoStringify);
-        console.log('******');
         console.log(currentSummary);
         res.send(JSON.stringify(data));
     });
 
 });
 
-// serving historical data
+// Serving historical data
 app.get('/old', function (req, res) {
     forecastio.timeMachine('51.506', '-0.127', '2008-01-01T00:00:01Z').then(function (data) {
         res.send(JSON.stringify(data, null, 2));
@@ -47,6 +51,7 @@ app.get('/old', function (req, res) {
 
 })
 
+// Fetching HTML5 location data
 app.post('/position', function(req, res){
 	console.log('body: ' + req.body.coords.latitude);
 	res.send(req.body);
