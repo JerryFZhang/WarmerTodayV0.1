@@ -21,22 +21,22 @@
             $("p.location").replaceWith("Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude + '<br>');
             var dataPassing = JSON.stringify(position);
-//            $.ajax({
-//                type: 'POST'
-//                , data: dataPassing
-//                , url: '/position'
-//            });
-            var xhttp;
-            if (window.XMLHttpRequest) {
-            xhttp = new XMLHttpRequest();
-            } else {
-            // code for IE6, IE5
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            
-            xhttp.open("POST", "/position", true);
-//            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(dataPassing);
+            $.ajax({
+                type: 'POST'
+                , data: dataPassing
+                , url: '/position'
+            });
+//            var xhttp;
+//            if (window.XMLHttpRequest) {
+//            xhttp = new XMLHttpRequest();
+//            } else {
+//            // code for IE6, IE5
+//            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//            }
+//            
+//            xhttp.open("POST", "/position", true);
+////            xhttp.setRequestHeader("Content-type", "application/json");
+//            xhttp.send(dataPassing);
         }
     </script>
 </head>

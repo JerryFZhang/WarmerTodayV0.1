@@ -10,37 +10,52 @@ var forecastio = new forecastIO('******API Goes here*****');
 
 var path = require('path');
 
-http.createServer(function(req,res){ 
-    var path = req.url.replace(/\?(?:\?.*)?$/,'').toLowerCase();
-    switch(path){
-        case '/':
-            fs.readFile('index.html', function(err,data){
-                if (err) {
-                    throw err;
-                    console.log(err);
+http.createServer(function (req, res) {
+    var path = req.url.replace(/\?(?:\?.*)?$/, '').toLowerCase();
+    switch (path) {
+    case '/':
+        fs.readFile('./public/index.html', function (err, data) {
+            res.writeHead(
+                200, {
+                    'Content-Type': 'text/html'
+                    , 'Content-Length': data.length
                 }
-                res.writeHead(
-                    200,
-                    {'Content-Type': 'text/html',
-                    'Content-Length':data.length}
-                );
-                res.write(data);
-                res.end();
-            });
-            break;
-        
-        case '/about':
-            res.writeHead(200, { 'Content-Type': 'text/plain'});
-            res.end('About');
-            break;
+            );
+            res.write(data);
+            res.end();
+        });
+        break;
+
+    case '/about':
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+        res.end('About');
+        break;
+
+    case 'position':
+        break;
             
-        case 'position':
-        default:
-            console.error('Not Found');
-            res.writeHead(404, {'Content-Type': 'text/plain'});
-            res.end('404 Not Found');
-            break;
+    case '/css/index.css':
+        fs.readFile('./public/css/index.css', function (err, data) {
+            res.writeHead(
+                200, {
+                    'Content-Type': 'text/css'
+                    , 'Content-Length': data.length
+                }
+            );
+            res.write(data);
+            res.end();
+        });
+        break;
+    default:
+        console.error('Path "' + path + '" not found');
+        res.writeHead(404, {
+            'Content-Type': 'text/plain'
+        });
+        res.end('404 Not Found');
+        break;
     }
-    
+
 }).listen(port);
 console.log('Server stared on localhost:' + port);
