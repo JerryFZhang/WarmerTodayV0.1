@@ -53,8 +53,9 @@ app.get('/old', function (req, res) {
 
 // Fetching HTML5 location data
 app.post('/position', function(req, res){
-	console.log('body: ' + req.body.coords.latitude);
-	res.send(req.body);
+    var lat = req.body("lat");
+    var lng = req.body("lng");
+    console.log(lat + ', ' + lng);
 });
 
 //Serving static content directly from public folder, will consider do the same thing for html later as well.
