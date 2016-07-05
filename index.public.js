@@ -6,9 +6,14 @@ var forecaseio = new forecaseIO('**********API KEY*************');
 
 var app = express();
 var path = require('path');
-var currentLocation;
+var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 
+var file  = './public/json/data.json';
+
+jsonfile.readFile(file, function(err, obj) {
+  console.dir(obj)
+})
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -27,7 +32,11 @@ app.get('/', function (req, res) {
 
 // Serving weather data at the moment using current location.
 app.get('/current', function (req, res) {
-    forecastio.forecast('51.506', '-0.127').then(function (data) {
+    
+    var currentLocation = jsonfile.readFileSync(file);
+    var currentLat = currentLocation.lat; 
+    var currentLng = currentLocation.lng;
+    forecastio.forecast(currentLat, currentLng).then(function (data) {
         var weatherInfo = data
             , weatherInfoStringify = JSON.stringify(data)
             , requestedLatitude = data.latitude
@@ -38,7 +47,6 @@ app.get('/current', function (req, res) {
         console.log(currentSummary);
         res.send(JSON.stringify(data));
     });
-
 });
 
 // serving historical data
@@ -47,14 +55,16 @@ app.get('/old', function (req, res) {
         res.send(JSON.stringify(data, null, 2));
     });
 
-})
-
-app.post('/position', function(req, res){
-    console.log(req.body);
-    console.log(req.query);
-    console.log(req.params);
 });
 
+// Pass location information to backed and stored it in global variable
+app.post('/position', function(req, res){
+    var current = req.body;
+    
+    jsonfile.writeFile(file, current, function (err) {
+    console.error(err);
+    });
+});
 
 //Serving static content directly from public folder, will consider do the same thing for html later as well.
 app.use('/static', express.static('public'));
