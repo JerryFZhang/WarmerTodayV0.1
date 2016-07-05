@@ -36,11 +36,10 @@ app.get('/current', function (req, res) {
     var currentLocation = jsonfile.readFileSync(file);
     var currentLat = currentLocation.lat; 
     var currentLng = currentLocation.lng;
+    
     forecastio.forecast(currentLat, currentLng).then(function (data) {
         var weatherInfo = data
             , weatherInfoStringify = JSON.stringify(data)
-            , requestedLatitude = data.latitude
-            , requestedLongitude = data.longitude
             , currentSummary = data.currently.summary;
         console.log(weatherInfo);
         console.log(weatherInfoStringify);
@@ -51,7 +50,11 @@ app.get('/current', function (req, res) {
 
 // serving historical data
 app.get('/old', function (req, res) {
-    forecastio.timeMachine('51.506', '-0.127', '2008-01-01T00:00:01Z').then(function (data) {
+    var currentLocation = jsonfile.readFileSync(file);
+    var currentLat = currentLocation.lat; 
+    var currentLng = currentLocation.lng;
+
+    forecastio.timeMachine(currentLat, currentLng, '2008-01-01T00:00:01Z').then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 
