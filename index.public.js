@@ -50,11 +50,17 @@ app.get('/current', function (req, res) {
 
 // serving historical data
 app.get('/old', function (req, res) {
+    
     var currentLocation = jsonfile.readFileSync(file);
     var currentLat = currentLocation.lat; 
     var currentLng = currentLocation.lng;
-
-    forecastio.timeMachine(currentLat, currentLng, '2008-01-01T00:00:01Z').then(function (data) {
+    
+    // The time could be like this. 
+    //'2008-01-01T00:00:01Z'
+    var currentTime; 
+    
+    
+    forecastio.timeMachine(currentLat, currentLng, currentTime).then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 
