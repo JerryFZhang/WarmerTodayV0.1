@@ -59,7 +59,6 @@ app.get('/old', function (req, res) {
     //'2008-01-01T00:00:01Z'
     var currentTime; 
     
-    
     forecastio.timeMachine(currentLat, currentLng, currentTime).then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
