@@ -12,15 +12,26 @@ var bodyParser = require('body-parser');
 var file  = './public/json/data.json';
 
 jsonfile.readFile(file, function(err, obj) {
-  console.dir(obj)
-})
+  console.dir(obj);
+});
+var now = new Date();
+
+console.log(now);
+console.log(Date.parse(now));
+console.log(now.toUTCString());
+console.log(now.toDateString());
+console.log(now.toTimeString());
+console.log(now.toLocaleTimeString());
+console.log(now.toLocaleDateString());
+console.log(now.toISOString());
+console.log(Date.parse(now.toISOString()));
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 
 //// View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs'); //Set the view engine to ejs for renderring html content.
+//app.set('view engine', 'ejs'); //Set the view engine to ejs for renderring html content.
 
 app.use(bodyParser()); 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -57,9 +68,8 @@ app.get('/old', function (req, res) {
     
     // The time could be like this. 
     //'2008-01-01T00:00:01Z'
-    var currentTime; 
     
-    forecastio.timeMachine(currentLat, currentLng, currentTime).then(function (data) {
+    forecastio.timeMachine(currentLat, currentLng, now.toISOString).then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 
