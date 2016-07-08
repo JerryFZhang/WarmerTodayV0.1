@@ -3,6 +3,7 @@ var express = require('express');
 //https://github.com/soplakanets/node-forecastio
 var forecaseIO = require('forecastio');
 var forecaseio = new forecaseIO('**********API KEY*************');
+
 var app = express();
 var path = require('path');
 var jsonfile = require('jsonfile');
@@ -42,13 +43,20 @@ app.get('/current', function (req, res) {
     var currentLocation = jsonfile.readFileSync(locationFile);
 
     forecastio.forecast(currentLocation.lat, currentLocation.lng).then(function (data) {
-        var weatherInfo = data
-            , weatherInfoStringify = JSON.stringify(data)
-            , currentSummary = data.currently.summary;
+        var weatherInfo = data;
+        var weatherInfoStringify = JSON.stringify(data);
+        
+        //Current
+        var current = data.currently;
+        var currentSummary = data.currently.summary;
+        var currentIcon = data.currently.icon;
+        var currentTemp = data.currently.temperature;
+        
         console.log(weatherInfo);
         console.log(weatherInfoStringify);
         console.log(currentSummary);
-        res.send(JSON.stringify(data));
+        
+        res.send(weatherInfoStringify);
     });
 });
 
