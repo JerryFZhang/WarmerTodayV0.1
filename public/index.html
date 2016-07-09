@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
-     <script>
+    <script>
         if (navigator.geolocation) {
             //Call location function in and pass the location.
             navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
+        }
+        else {
             // Location not supported.
             $("p.location").replaceWith("Geolocation is not supported by this browser.");
         }
@@ -22,13 +22,13 @@
             // Store latitude and longitude as a float from the json object.
             var lat = parseFloat(JSON.stringify(position.coords.latitude));
             var lng = parseFloat(JSON.stringify(position.coords.longitude));
-            
             // Display location on the page.
-            $("p.location").replaceWith('<p>Latitude: ' + lat +
-                '<br>Longitude: ' + lng + '</p>');
-            
+            $("p.location").replaceWith('<p>Latitude: ' + lat + '<br>Longitude: ' + lng + '</p>');
             // Post the location data to backend.
-            $.post('/position',{lat:lat,lng:lng});
+            $.post('/position', {
+                lat: lat
+                , lng: lng
+            });
         }
     </script>
 </head>
@@ -51,7 +51,24 @@
     //
     $('#current').click(function () {
         $.get('/current', {}, function (data) {
-            $("p.inner").replaceWith('<pre>' + data + '</pre>')
+//          $("p.inner").replaceWith('<pre>' + data + '</pre>')
+                //Current
+            var currentObject = data.currently;
+            var currentSummary = data.currently.summary;
+            var currentIcon = data.currently.icon;
+            var currentTemp = data.currently.temperature;
+            var hourlyObject = data.hourly;
+            var hourlySummary = data.hourly.summary;
+            var hourlyIcon = data.hourly.icon;
+            var hourlyData = data.hourly.data;
+            var dailyObject = data.daily;
+            var dailySummary = data.daily.summary;
+            var dailyIcon = data.daily.icon;
+            var dailyData = data.daily.data;
+            
+//            console.log(weatherInfo);
+//            console.log(weatherInfoStringify);
+            console.log(currentSummary);
         });
     });
     $('#old').click(function () {

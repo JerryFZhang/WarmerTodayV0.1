@@ -39,23 +39,10 @@ app.get('/', function (req, res) {
 
 // Serving weather data at the moment using current location.
 app.get('/current', function (req, res) {
-    
     var currentLocation = jsonfile.readFileSync(locationFile);
-
     forecastio.forecast(currentLocation.lat, currentLocation.lng).then(function (data) {
         var weatherInfo = data;
         var weatherInfoStringify = JSON.stringify(data);
-        
-        //Current
-        var current = data.currently;
-        var currentSummary = data.currently.summary;
-        var currentIcon = data.currently.icon;
-        var currentTemp = data.currently.temperature;
-        
-        console.log(weatherInfo);
-        console.log(weatherInfoStringify);
-        console.log(currentSummary);
-        
         res.send(weatherInfoStringify);
     });
 });
