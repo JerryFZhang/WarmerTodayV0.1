@@ -48,32 +48,51 @@
     -->
 </body>
 <script>
-    //
+    var currentObject, currentSummary, currentIcon, currentTemp, hourlyObject, hourlySummary, hourlyIcon, hourlyData, dailyObject, dailySummary, dailyIcon, dailyIcon;
+    
     $('#current').click(function () {
+    
         $.get('/current', {}, function (data) {
-//          $("p.inner").replaceWith('<pre>' + data + '</pre>')
-                //Current
-            var currentObject = data.currently;
-            var currentSummary = data.currently.summary;
-            var currentIcon = data.currently.icon;
-            var currentTemp = data.currently.temperature;
-            var hourlyObject = data.hourly;
-            var hourlySummary = data.hourly.summary;
-            var hourlyIcon = data.hourly.icon;
-            var hourlyData = data.hourly.data;
-            var dailyObject = data.daily;
-            var dailySummary = data.daily.summary;
-            var dailyIcon = data.daily.icon;
-            var dailyData = data.daily.data;
             
-//            console.log(weatherInfo);
-//            console.log(weatherInfoStringify);
-            console.log(currentSummary);
+            data = JSON.parse(data);
+            
+            currentObject = JSON.stringify(data.currently);
+            currentSummary = data.currently.summary;
+            currentIcon = data.currently.icon;
+            currentTemp = data.currently.temperature;
+            
+            hourlyObject = JSON.stringify(data.hourly);
+            hourlySummary = data.hourly.summary;
+            hourlyIcon = data.hourly.icon;
+            hourlyData = JSON.stringify(data.hourly.data);
+            
+            dailyObject = JSON.stringify(data.daily);
+            dailySummary = data.daily.summary;
+            dailyIcon = data.daily.icon;
+            dailyData = JSON.stringify(data.daily.data);
+            
+            $("p.inner").replaceWith(
+                '<pre>' + currentObject + '</pre><br>' + 
+                '<pre>' + currentSummary + '</pre><br>' + 
+                '<pre>' + currentIcon + '</pre><br>' + 
+                '<pre>' + currentTemp + '</pre><br>' + 
+                '<pre>' + hourlyObject + '</pre><br>' + 
+                '<pre>' + hourlySummary + '</pre><br>' + 
+                '<pre>' + hourlyIcon + '</pre><br>' + 
+                '<pre>' + hourlyData + '</pre><br>' + 
+                '<pre>' + dailyObject + '</pre><br>' + 
+                '<pre>' + dailySummary + '</pre><br>' + 
+                '<pre>' + dailyIcon + '</pre><br>' + 
+                '<pre>' + dailyData +'</pre><br>')
         });
     });
+    
     $('#old').click(function () {
+        
         $.get('/old', {}, function (data) {
-            $("p.inner").replaceWith('<pre>' + data + '</pre>')
+        
+            $("p.inner").replaceWith()
+        
         });
     });
 </script>
