@@ -61,10 +61,10 @@ app.get('/old', function (req, res) {
 // Pass location information to backed and stored it in global variable
 app.post('/position', function(req, res){
     var current = req.body;
-    
     jsonfile.writeFile(locationFile, current, function (err) {
     console.error(err);
     });
+    res.end();
 });
 
 // Custom 404 page.
