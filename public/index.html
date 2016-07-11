@@ -23,7 +23,7 @@
             var lat = parseFloat(JSON.stringify(position.coords.latitude));
             var lng = parseFloat(JSON.stringify(position.coords.longitude));
             // Display location on the page.
-            $("p.location").replaceWith('<p>Latitude: ' + lat + '<br>Longitude: ' + lng + '</p>');
+            $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
             // Post the location data to backend.
             $.post('/position', {
                 lat: lat
@@ -38,6 +38,7 @@
     <!--    <h1 class="warm">warm</h1></div>-->
     <p class="inner">Data goes here.</p>
     <p class="location">Please enable location data.</p>
+    <p class="Temp">Temp</p>
     <button id="current">Request Current Data</button>
     <button id="old">Request Old Data</button>
     <!--
@@ -47,54 +48,6 @@
     <h1 class="cold">cold</h1></div>
     -->
 </body>
-<script>
-    var currentObject, currentSummary, currentIcon, currentTemp, hourlyObject, hourlySummary, hourlyIcon, hourlyData, dailyObject, dailySummary, dailyIcon, dailyIcon;
-    
-    $('#current').click(function () {
-    
-        $.get('/current', {}, function (data) {
-            
-            data = JSON.parse(data);
-            
-            currentObject = JSON.stringify(data.currently);
-            currentSummary = data.currently.summary;
-            currentIcon = data.currently.icon;
-            currentTemp = data.currently.temperature;
-            
-            hourlyObject = JSON.stringify(data.hourly);
-            hourlySummary = data.hourly.summary;
-            hourlyIcon = data.hourly.icon;
-            hourlyData = JSON.stringify(data.hourly.data);
-            
-            dailyObject = JSON.stringify(data.daily);
-            dailySummary = data.daily.summary;
-            dailyIcon = data.daily.icon;
-            dailyData = JSON.stringify(data.daily.data);
-            
-            $("p.inner").replaceWith(
-                '<pre>' + currentObject + '</pre><br>' + 
-                '<pre>' + currentSummary + '</pre><br>' + 
-                '<pre>' + currentIcon + '</pre><br>' + 
-                '<pre>' + currentTemp + '</pre><br>' + 
-                '<pre>' + hourlyObject + '</pre><br>' + 
-                '<pre>' + hourlySummary + '</pre><br>' + 
-                '<pre>' + hourlyIcon + '</pre><br>' + 
-                '<pre>' + hourlyData + '</pre><br>' + 
-                '<pre>' + dailyObject + '</pre><br>' + 
-                '<pre>' + dailySummary + '</pre><br>' + 
-                '<pre>' + dailyIcon + '</pre><br>' + 
-                '<pre>' + dailyData +'</pre><br>')
-        });
-    });
-    
-    $('#old').click(function () {
-        
-        $.get('/old', {}, function (data) {
-        
-            $("p.inner").replaceWith()
-        
-        });
-    });
-</script>
+<script src="js/call.js" ></script>
 
 </html>
