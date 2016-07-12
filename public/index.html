@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
@@ -8,31 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
-        if (navigator.geolocation) {
-            //Call location function in and pass the location.
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-        else {
-            // Location not supported.
-            $("p.location").replaceWith("Geolocation is not supported by this browser.");
-        }
-
-        function showPosition(position) {
-            // Store latitude and longitude as a float from the json object.
-            var lat = parseFloat(JSON.stringify(position.coords.latitude));
-            var lng = parseFloat(JSON.stringify(position.coords.longitude));
-            // Display location on the page.
-            $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
-            // Post the location data to backend.
-            $.post('/position', {
-                lat: lat
-                , lng: lng
-            });
-        }
-    </script>
+    <script src="js/getLocation.js" ></script>
 </head>
-
 <body>
     <!--<div class="container-fluid">-->
     <!--    <h1 class="warm">warm</h1></div>-->
@@ -49,5 +25,4 @@
     -->
 </body>
 <script src="js/call.js" ></script>
-
 </html>
