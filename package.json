@@ -22,7 +22,6 @@
     "ejs": "^2.4.2",
     "express": "^4.14.0",
     "forecastio": "^1.0.2",
-    "gulp": "^3.9.1",
     "jquery": "^3.0.0",
     "jsonfile": "^2.3.1",
     "node": "0.0.0",
@@ -30,6 +29,8 @@
     "socket.io": "^1.4.6"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.12",
     "nodemon": "^1.9.2"
   }
 }
