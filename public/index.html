@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
@@ -7,22 +8,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="js/getLocation.js" ></script>
+    <script src="js/getLocation.js"></script>
 </head>
+
 <body>
+    
     <!--<div class="container-fluid">-->
     <!--    <h1 class="warm">warm</h1></div>-->
+
     <p class="inner">Data goes here.</p>
     <p class="location">Please enable location data.</p>
     <p class="Temp">Temp</p>
     <button id="current">Request Current Data</button>
     <button id="old">Request Old Data</button>
+    <p></p>
     <!--
     <div class="container-fluid">
     <h1 class="same">same</h1></div>
     <div class="container-fluid">
     <h1 class="cold">cold</h1></div>
     -->
+    <canvas id="c" width="500" height="500"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  <script src="js/chart.js"></script>
 </body>
-    <script src="js/call.js" ></script>
 </html>

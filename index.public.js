@@ -11,17 +11,6 @@ var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
 var now = new Date();
 
-//Parsing date object using different ways.
-console.log(now);
-console.log(Date.parse(now));
-console.log(now.toUTCString());
-console.log(now.toDateString());
-console.log(now.toTimeString());
-console.log(now.toLocaleTimeString());
-console.log(now.toLocaleDateString());
-console.log(now.toISOString());
-console.log(Date.parse(now.toISOString()));
-
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 // View engine setup
