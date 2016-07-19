@@ -37,44 +37,44 @@ $('#old').click(function () {
 //        };
 //        
 //    });
-console.log(hourlyDataToCel);
-// Chart populator
-var ctx = document.getElementById("c").getContext("2d");
-
-// Calculating time lables
-var time = new Date;
-var hour = time.getHours();
-var lables = []
-for (var i = 0; i < 24; i++) {
-    var addedHour = i + hour;
-    if (addedHour > 24) {
-        lables[i] = hour + i - 24;
-    }
-    else {
-        lables[i] = hour + i;
-    }
-}
-
-var data = {
-    labels: lables
-    , datasets: [{
-        label: "My First dataset"
-        , fillColor: "rgba(220,220,220,0.2)"
-        , strokeColor: "rgba(220,220,220,1)"
-        , pointColor: "rgba(220,220,220,1)"
-        , pointStrokeColor: "#fff"
-        , pointHighlightFill: "#fff"
-        , pointHighlightStroke: "rgba(220,220,220,1)"
-        , data: [12, 15, 15, 17, 19, 23, 23, 24, 24, 24, 25, 26, 27, 19, 17, 16, 15, 15, 15, 14, 13, 13, 15, 16]
-      }, {
-        label: "My Second dataset"
-        , fillColor: "rgba(151,187,205,0.2)"
-        , strokeColor: "rgba(151,187,205,1)"
-        , pointColor: "rgba(151,187,205,1)"
-        , pointStrokeColor: "#fff"
-        , pointHighlightFill: "#fff"
-        , pointHighlightStroke: "rgba(151,187,205,1)"
-        , data: [23, 23, 24, 24, 24, 25, 26, 27, 30, 30, 30, 31, 33, 35, 24, 24, 23, 22, 21, 19, 17, 16, 14, 15]
-      }]
-};
-var MyNewChart = new Chart(ctx).Line(data);
+//console.log(hourlyDataToCel);
+//// Chart populator
+//var ctx = document.getElementById("c").getContext("2d");
+//
+//// Calculating time lables
+//var time = new Date;
+//var hour = time.getHours();
+//var lables = []
+//for (var i = 0; i < 24; i++) {
+//    var addedHour = i + hour;
+//    if (addedHour > 24) {
+//        lables[i] = hour + i - 24;
+//    }
+//    else {
+//        lables[i] = hour + i;
+//    }
+//}
+//
+//var data = {
+//    labels: lables
+//    , datasets: [{
+//        label: "My First dataset"
+//        , fillColor: "rgba(220,220,220,0.2)"
+//        , strokeColor: "rgba(220,220,220,1)"
+//        , pointColor: "rgba(220,220,220,1)"
+//        , pointStrokeColor: "#fff"
+//        , pointHighlightFill: "#fff"
+//        , pointHighlightStroke: "rgba(220,220,220,1)"
+//        , data: [12, 15, 15, 17, 19, 23, 23, 24, 24, 24, 25, 26, 27, 19, 17, 16, 15, 15, 15, 14, 13, 13, 15, 16]
+//      }, {
+//        label: "My Second dataset"
+//        , fillColor: "rgba(151,187,205,0.2)"
+//        , strokeColor: "rgba(151,187,205,1)"
+//        , pointColor: "rgba(151,187,205,1)"
+//        , pointStrokeColor: "#fff"
+//        , pointHighlightFill: "#fff"
+//        , pointHighlightStroke: "rgba(151,187,205,1)"
+//        , data: [23, 23, 24, 24, 24, 25, 26, 27, 30, 30, 30, 31, 33, 35, 24, 24, 23, 22, 21, 19, 17, 16, 14, 15]
+//      }]
+//};
+//var MyNewChart = new Chart(ctx).Line(data);
