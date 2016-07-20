@@ -1,7 +1,7 @@
 # Warmer.Pro
 A new type of weather application.
 
-The final product(estimated to release in September) of this will be deployed on heroku for public use.
+[Pre-Alpha](Warmer.pro)is deployed and restricted for now. Occationally avaliable for public use for testing purporses. Beta will be abaliavle for public use sometimes in September.
 
 Powered by [forecase.io](http://forecase.io).
 
