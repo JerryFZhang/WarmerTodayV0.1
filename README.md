@@ -1,7 +1,7 @@
 # Warmer.Pro
 A new type of weather application.
 
-[Pre-Alpha](Warmer.pro)is deployed and restricted for now. Occationally avaliable for public use for testing purporses. Beta will be abaliavle for public use sometimes in September.
+[Pre-Alpha](Warmer.pro) is deployed and restricted for now. Occationally avaliable for public use for testing purporses. Beta will be abaliavle for public use sometimes in September.
 
 Powered by [forecase.io](http://forecase.io).
 
