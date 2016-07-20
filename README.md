@@ -38,6 +38,11 @@ See Issues tab.
 #Author
 Fengwei Jerry Zhang - zhang96
 
+
+#Contribution
+You are more than welcome to fork the repo and add features, fix bugs etc. But please submit issues before sending pull requests.
+**Beware of your personal forecase.io API code, keep it private, do not include it in the pull request.**
+
 #License
 MIT, see LICENSE.txt.
 
