@@ -18,8 +18,6 @@ https.createServer({
       cert: fs.readFileSync('cert.pem')
     }, app).listen(55555);
 
-
-
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 // View engine setup
@@ -31,14 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.all('*', function(req, res, next){
   if (req.secure) {
-        console.log('SECURE CONNECTION');
-        return next();  
-  }
-    else{
-        console.log('NOT A SECURE CONNECTION');
-        res.redirect('https://'+req.hostname+':'+'55555'+req.url);
-        console.log('REDIRECTED TO '+'https://'+req.hostname+':'+'55555'+req.url);
-    }});
+      console.log('SECURE CONNECTION');
+      return next();  
+  }else{
+      console.log('NOT A SECURE CONNECTION');
+      res.redirect('https://'+req.hostname+':'+'55555'+req.url);
+      console.log('REDIRECTED TO '+'https://'+req.hostname+':'+'55555'+req.url);
+    }
+});
 
 // Default landing page
 app.get('/', function (req, res) {
