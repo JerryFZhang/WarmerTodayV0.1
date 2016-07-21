@@ -1,4 +1,6 @@
 var express = require('express');
+var fs = require('fs');
+var https = require('https');
 
 //https://github.com/soplakanets/node-forecastio
 var forecaseIO = require('forecastio');
@@ -11,6 +13,13 @@ var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
 var now = new Date();
 
+https.createServer({
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem')
+    }, app).listen(55555);
+
+
+
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 // View engine setup
@@ -20,6 +29,16 @@ app.use(bodyParser());
 // Serving all public content only from ./public
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.all('*', function(req, res, next){
+  if (req.secure) {
+        console.log('SECURE CONNECTION');
+        return next();  
+  }
+    else{
+        console.log('NOT A SECURE CONNECTION');
+        res.redirect('https://'+req.hostname+':'+'55555'+req.url);
+        console.log('REDIRECTED TO '+'https://'+req.hostname+':'+'55555'+req.url);
+    }});
 
 // Default landing page
 app.get('/', function (req, res) {

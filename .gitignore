@@ -6,3 +6,5 @@ server.js
 /index.js
 /index.archive.js
 weather.json
+
+*.pem
