@@ -25,15 +25,18 @@
   		//Get the canvas & context
   		var c = $('#c');
   		var ct = c.get(0).getContext('2d');
-  		var container = $(c).parent();
-  		//Run function when browser  resize
-	  	$(window).resize(respondCanvas);
-	  	function respondCanvas(){
-  			c.attr('width', 0.5*($(container).width())); //max width
-  			c.attr('height', 0.5*($(container).height())); //max height
-		}
+//  		var container = $(c).parent();
+//  		//Run function when browser  resize
+//	  	$(window).resize(respondCanvas);
+//	  	function respondCanvas(){
+//  			c.attr('width', 0.75*($(container).width())); //max width
+//  			c.attr('height', 0.75*($(container).height())); //max height
+//		}
 		respondCanvas();
+         	c.width = window.innerWidth * .8;
+	c.height = window.innerHeight * .8;
   	});
+       
     </script>
 </head>
 
@@ -50,7 +53,7 @@
     <div class="container-fluid">
     <h1 class="cold">cold</h1></div>
     -->
-    <canvas id="c" width="1000vw" height="1000vh"></canvas>
+    <canvas id="c" width="1000vw" height="1000vh" style = "position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;">canvas is not supported by this browser</canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </body>
 </html>
