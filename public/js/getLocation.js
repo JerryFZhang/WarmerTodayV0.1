@@ -36,18 +36,14 @@ if (navigator.geolocation) {
      dailySummary = data.daily.summary;
      dailyIcon = data.daily.icon;
      dailyData = data.daily.data;
-//     $("p.inner").replaceWith('<pre>' + currentSummary + '</pre><br>' + '<pre>' + currentIcon + '</pre><br>' + '<pre>' + currentTemp + '</pre><br>' + '<pre>' + hourlySummary + '</pre><br>' + '<pre>' + hourlyIcon + '</pre><br>' +
-//         //                '<pre>' + hourlyData[1].time + '</pre><br>' +
-//         '<pre>' + dailySummary + '</pre><br>' + '<pre>' + dailyIcon + '</pre><br>' + '<pre>' + JSON.stringify(dailyData) + '</pre><br>');
+     $("p.inner").replaceWith('<h2>' + currentSummary + '</h2><br>' + '<h2>' + convertToCelcius(currentTemp) + ' Cº</h2><br>');
+         
      for (var i = 0; i < hourlyData.length; i++) {
          var time = hourlyData[i].time;
          var date = new Date(time * 1000);
-         var fren = parseFloat(hourlyData[i].apparentTemperature);
-         var celc = (fren - 32) * 5 / 9;
-         console.log(hourlyData[i].summary);
-         console.log(date);
-         hourlyDataToCel[i] = celc.toFixed(2);
-         console.log(hourlyData[i].windSpeed);
+         var temp = parseFloat(hourlyData[i].apparentTemperature)
+         hourlyDataToCel[i] = convertToCelcius(temp);
+         console.log(hourlyDataToCel[i] + ' Cº');
      };
      console.log(hourlyDataToCel);
      //chart
@@ -93,5 +89,8 @@ if (navigator.geolocation) {
      var MyNewChart = new Chart(ctx).Line(data);
  });
  }
-
+function convertToCelcius(fren){
+    var celc = (fren - 32) * 5 / 9;
+    return celc.toFixed(0);
+}
  
