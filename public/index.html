@@ -20,6 +20,21 @@
   ga('send', 'pageview');
 
 </script>
+    <script>
+  	$(document).ready( function(){
+  		//Get the canvas & context
+  		var c = $('#c');
+  		var ct = c.get(0).getContext('2d');
+  		var container = $(c).parent();
+  		//Run function when browser  resize
+	  	$(window).resize(respondCanvas);
+	  	function respondCanvas(){
+  			c.attr('width', 0.5*($(container).width())); //max width
+  			c.attr('height', 0.5*($(container).height())); //max height
+		}
+		respondCanvas();
+  	});
+    </script>
 </head>
 
 <body>
@@ -29,14 +44,13 @@
 
     <p class="inner">Data goes here.</p>
     <p class="location">Please enable location data.</p>
-    <p></p>
     <!--
     <div class="container-fluid">
     <h1 class="same">same</h1></div>
     <div class="container-fluid">
     <h1 class="cold">cold</h1></div>
     -->
-    <canvas id="c" width="500" height="500"></canvas>
+    <canvas id="c" width="1000vw" height="1000vh"></canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </body>
 </html>
