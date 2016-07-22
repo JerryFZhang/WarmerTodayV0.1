@@ -26,9 +26,8 @@ app.get('/', function (req, res) {
 });
 
 // Serving weather data at the moment using current location.
-app.get('/current', function (req, res) {
-    var currentLocation = jsonfile.readFileSync(locationFile);
-    forecastio.forecast(currentLocation.lat, currentLocation.lng).then(function (data) {
+app.post('/current', function (req, res) {
+    forecastio.forecast(req.body.lat, req.body.lng).then(function (data) {
         var weatherInfo = data;
         var weatherInfoStringify = JSON.stringify(data);
         res.send(weatherInfoStringify);
@@ -44,15 +43,6 @@ app.get('/old', function (req, res) {
         res.send(JSON.stringify(data, null, 2));
     });
 
-});
-
-// Pass location information to backed and stored it in global variable
-app.post('/position', function(req, res){
-    var current = req.body;
-    jsonfile.writeFile(locationFile, current, function (err) {
-    console.error(err);
-    });
-    res.end();
 });
 
 // Custom 404 page.
