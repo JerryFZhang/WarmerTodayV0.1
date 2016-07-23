@@ -23,32 +23,28 @@ function showPosition(position) {
     
     // Post the location data to backend and get the weather information.
     $.post('/current', {lat: lat, lng: lng}, function (data) {
+    
         data = JSON.parse(data);
-        currentSummary = data.currently.summary;
-        currentIcon = data.currently.icon;
-        currentTemp = data.currently.temperature;
-        hourlySummary = data.hourly.summary;
-        hourlyIcon = data.hourly.icon;
         hourlyData = data.hourly.data;
-        dailySummary = data.daily.summary;
-        dailyIcon = data.daily.icon;
-        dailyData = data.daily.data;
-        $("p.inner").replaceWith('<h2>' + currentSummary + '</h2><br>' + '<h2>' + convertToCelcius(currentTemp) + ' Cº</h2><br>');
+        
+        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+        
         for (var i = 0; i < hourlyData.length; i++) {
             var time = hourlyData[i].time;
             var date = new Date(time * 1000);
             var temp = parseFloat(hourlyData[i].apparentTemperature)
             hourlyDataToCel[i] = convertToCelcius(temp);
-            console.log(hourlyDataToCel[i]);
         };
-        console.log(hourlyDataToCel);
+        
         //chart
         var ctx = document.getElementById("c").getContext("2d");
+        
         // Calculating time lables
         var time = new Date;
         var hour = time.getHours();
         var lables = []
         var lablesString = []
+        
         for (var i = 0; i < 24; i++) {
             var addedHour = i + hour;
             if (addedHour > 24) {
@@ -58,12 +54,11 @@ function showPosition(position) {
                 lables[i] = hour + i;
             }
         }
-        console.log(lables);
+        
         for (var i = 0; i < 24; i++) {
             switch (true) {
             case lables[i] > 0 && lables[i] < 12:
                 lablesString[i] = (lables[i]) + 'am';
-                console.log(lables[i]);
                 break;
             case lables[i] == 12:
                 lablesString[i] = '12pm';
@@ -76,7 +71,7 @@ function showPosition(position) {
                 break;
             }
         }
-        console.log(lablesString);
+        
         var data = {
             labels: lablesString
             , datasets: [{
