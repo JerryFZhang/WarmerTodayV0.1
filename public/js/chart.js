@@ -1,5 +1,5 @@
 $('#old').click(function () {
-    $.get('/old', {}, function (data) {
+    $.post('/old', {}, function (data) {
         $("p.inner").replaceWith()
     });
 });

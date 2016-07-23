@@ -13,10 +13,13 @@ var now = new Date();
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
+
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 // Parsing coming JSON object
 app.use(bodyParser()); 
+
 // Serving all public content only from ./public
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,14 +31,12 @@ app.get('/', function (req, res) {
 // Serving weather data at the moment using current location.
 app.post('/current', function (req, res) {
     forecastio.forecast(req.body.lat, req.body.lng).then(function (data) {
-        var weatherInfo = data;
-        var weatherInfoStringify = JSON.stringify(data);
-        res.send(weatherInfoStringify);
+        res.send(JSON.stringify(data));
     });
 });
 
 // serving historical data
-app.get('/old', function (req, res) {
+app.post('/old', function (req, res) {
     var currentLocation = jsonfile.readFileSync(locationFile);
     // The time could be like this. 
     //'2008-01-01T00:00:01Z'
