@@ -19,7 +19,7 @@ function showPosition(position) {
     lng = parseFloat(JSON.stringify(position.coords.longitude));
     
     // Display location on the page.
-    $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
+//    $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
     
     // Post the location data to backend and get the weather information.
     $.post('/current', {lat: lat, lng: lng}, function (data) {
@@ -102,6 +102,10 @@ function showPosition(position) {
 
 $.get("http://ipinfo.io", function(data) {
     console.log(data.loc);
+    console.log(data.city);
+    console.log(data.region);
+    console.log(data.country);
+     $("p.city").replaceWith('<h3>' + data.city + ', ' + data.region + ', ' + data.country);
 }, "jsonp");
 
 function convertToCelcius(fren) {
