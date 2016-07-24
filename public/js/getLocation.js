@@ -100,6 +100,10 @@ function showPosition(position) {
     });
 }
 
+$.get("http://ipinfo.io", function(data) {
+    console.log(data.loc);
+}, "jsonp");
+
 function convertToCelcius(fren) {
     var celc = (fren - 32) * 5 / 9;
     return celc.toFixed(0);
