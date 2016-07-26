@@ -98,6 +98,9 @@ function showPosition(position) {
         };
         var MyNewChart = new Chart(ctx).Line(data);
     });
+    $.post('/old'    , {lat: lat, lng: lng}, function (data) {
+        $("p.inner2").replaceWith('<pre>'+data+'</pre>')
+    });
 }
 
 $.get("http://ipinfo.io", function(data) {
