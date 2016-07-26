@@ -37,7 +37,8 @@ app.post('/current', function (req, res) {
 
 // serving historical data
 app.post('/old', function (req, res) {
-    var currentLocation = jsonfile.readFileSync(locationFile);
+//    var currentLocation = jsonfile.readFileSync(locationFile);
+    //Get location 
     // The time could be like this. 
     //'2008-01-01T00:00:01Z'
     forecastio.timeMachine(currentLocation.lat, currentLocation.lng, timeObjectWsantDefinedDoNotUse).then(function (data) {

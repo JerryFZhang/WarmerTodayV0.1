@@ -19,7 +19,7 @@ function showPosition(position) {
     lng = parseFloat(JSON.stringify(position.coords.longitude));
     
     // Display location on the page.
-//    $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
+    $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
     
     // Post the location data to backend and get the weather information.
     $.post('/current', {lat: lat, lng: lng}, function (data) {
@@ -84,16 +84,16 @@ function showPosition(position) {
                     , pointHighlightStroke: "rgba(220,220,220,1)"
                     , data: hourlyDataToCel
       }
-//                      , {
-//             label: "My Second dataset"
-//             , fillColor: "rgba(151,187,205,0.2)"
-//             , strokeColor: "rgba(151,187,205,1)"
-//             , pointColor: "rgba(151,187,205,1)"
-//             , pointStrokeColor: "#fff"
-//             , pointHighlightFill: "#fff"
-//             , pointHighlightStroke: "rgba(151,187,205,1)"
-//             , data: [23, 23, 24, 24, 24, 25, 26, 27, 30, 30, 30, 31, 33, 35, 24, 24, 23, 22, 21, 19, 17, 16, 14, 15]
-//      }
+                      , {
+             label: "My Second dataset"
+             , fillColor: "rgba(151,187,205,0.2)"
+             , strokeColor: "rgba(151,187,205,1)"
+             , pointColor: "rgba(151,187,205,1)"
+             , pointStrokeColor: "#fff"
+             , pointHighlightFill: "#fff"
+             , pointHighlightStroke: "rgba(151,187,205,1)"
+             , data: [23, 23, 24, 24, 24, 25, 26, 27, 30, 30, 30, 31, 33, 35, 24, 24, 23, 22, 21, 19, 17, 16, 14, 15]
+      }
                      ]
         };
         var MyNewChart = new Chart(ctx).Line(data);
