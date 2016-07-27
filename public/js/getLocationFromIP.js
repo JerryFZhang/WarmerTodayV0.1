@@ -1,4 +1,4 @@
-$.get("http://ipinfo.io", function(data) {
+$.get("https://ipinfo.io", function(data) {
     console.log(data.loc);
      $("p.city").replaceWith('<h3>' + data.city + ', ' + data.region + ', ' + getCountryName(data.country));
 }, "jsonp");
