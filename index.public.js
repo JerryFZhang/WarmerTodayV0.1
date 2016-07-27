@@ -10,6 +10,21 @@ var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
 var now = new Date();
+var yesterday = new Date();
+yesterday.setDate(now.getDate()-1);
+
+console.log(now);
+console.log(Date.parse(now));
+console.log(Date.parse(yesterday));
+console.log(yesterday.toISOString().substr(0,19));
+
+console.log(now.toUTCString());
+console.log(now.toDateString());
+console.log(now.toTimeString());
+console.log(now.toLocaleTimeString());
+console.log(now.toLocaleDateString());
+console.log(now.toISOString());
+console.log(Date.parse(now.toISOString()));
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -37,11 +52,8 @@ app.post('/current', function (req, res) {
 
 // serving historical data
 app.post('/old', function (req, res) {
-//    var currentLocation = jsonfile.readFileSync(locationFile);
-    //Get location 
-    // The time could be like this. 
     //'2008-01-01T00:00:01Z'
-    forecastio.timeMachine(currentLocation.lat, currentLocation.lng, timeObjectWsantDefinedDoNotUse).then(function (data) {
+    forecastio.timeMachine(req.body.lat, req.body.lng, yesterday.toISOString().substr(0,19)+'Z').then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 
