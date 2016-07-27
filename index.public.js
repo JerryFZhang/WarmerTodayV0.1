@@ -13,19 +13,6 @@ var now = new Date();
 var yesterday = new Date();
 yesterday.setDate(now.getDate()-1);
 
-console.log(now);
-console.log(Date.parse(now));
-console.log(Date.parse(yesterday));
-console.log(yesterday.toISOString().substr(0,19));
-
-console.log(now.toUTCString());
-console.log(now.toDateString());
-console.log(now.toTimeString());
-console.log(now.toLocaleTimeString());
-console.log(now.toLocaleDateString());
-console.log(now.toISOString());
-console.log(Date.parse(now.toISOString()));
-
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
 
