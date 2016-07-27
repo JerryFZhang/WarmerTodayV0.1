@@ -107,3 +107,5 @@ function convertToCelcius(fren) {
     var celc = (fren - 32) * 5 / 9;
     return celc.toFixed(0);
 }
+
+
