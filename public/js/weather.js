@@ -1,11 +1,4 @@
-var lat, lng, currentHourlyData, oldHourlyData;
-var positionJSON = {
-    lat: lat
-    , lng: lng
-};
-var oldData, currentData;
-var currentHourlyDataToCel = [];
-var oldHourlyDataToCel = [];
+
 if (navigator.geolocation) {
     //Call location function in and pass the location.
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -16,46 +9,14 @@ else {
 }
 
 function showPosition(position) {
+    var lat, lng;
     // Store latitude and longitude as a float from the json object.
     lat = parseFloat(JSON.stringify(position.coords.latitude));
     lng = parseFloat(JSON.stringify(position.coords.longitude));
     
-    // Display location on the page.
+    // Remove location alert on the page.
     $("p.location").replaceWith('');
-    
-    // Post the location data to backend and get the later information
-    $.post('/old', {lat: lat, lng: lng
-    }, function (data) {
-        // Weather information passed
-        data = JSON.parse(data);
-        oldHourlyData = data.hourly.data;
-        // Extract hourly tempurature and stored in an array
-        for (var i = 0; i < oldHourlyData.length; i++) {
-            var time = oldHourlyData[i].time;
-            var date = new Date(time * 1000);
-            var temp = parseFloat(oldHourlyData[i].apparentTemperature)
-            oldHourlyDataToCel[i] = convertToCelcius(temp);
-        };
-        console.log(oldHourlyDataToCel);
-        $("p.inner2").replaceWith('');
-    });
-    // Post the location data to backend and get the weather information.
-    $.post('/current', {lat: lat, lng: lng}, function (data) {
-        // Weather information passed
-        data = JSON.parse(data);
-        currentHourlyData = data.hourly.data;
-        //  Display current summary     
-        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
-        
-        // Extract hourly tempurature and stored in an array
-        for (var i = 0; i < currentHourlyData.length; i++) {
-            var time = currentHourlyData[i].time;
-            var date = new Date(time * 1000);
-            var temp = parseFloat(currentHourlyData[i].apparentTemperature)
-            currentHourlyDataToCel[i] = convertToCelcius(temp);
-        };
-        loadChart();
-    });
+    getWeather(lat,lng);
 }
 
 function convertToCelcius(fren) {
@@ -106,7 +67,7 @@ function getTimeArray(){
     return $12h;
 }
 
-function loadChart() {
+function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
     var chart = document.getElementById("c").getContext("2d");
     var timeLabel = getTimeArray();
     var data = {
@@ -132,4 +93,45 @@ function loadChart() {
         }]
     };
     var MyNewChart = new Chart(chart).Line(data);
+}
+
+function parseHourlyData(data){
+    
+    var hourlyDataToCel = [];
+    // Extract hourly tempurature and stored in an array
+        for (var i = 0; i < data.length; i++) {
+            var time = data[i].time;
+            var date = new Date(time * 1000);
+            var temp = parseFloat(data[i].apparentTemperature)
+            hourlyDataToCel[i] = convertToCelcius(temp);
+        };
+    return hourlyDataToCel;
+}
+
+function getWeather(lat, lng){
+    var currentHourlyDataToCel = [];
+    var oldHourlyDataToCel = [];
+    
+    $.post('/current', {lat: lat, lng: lng}, function (data) {
+        
+        // Weather information passed
+        data = JSON.parse(data);
+        var currentHourlyData = data.hourly.data;
+        
+        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
+        loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
+        
+        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+    });
+    
+    $.post('/old', {lat: lat, lng: lng}, function (data) {
+        // Weather information passed
+        data = JSON.parse(data);
+        var oldHourlyData = data.hourly.data;
+        
+        oldHourlyDataToCel = parseHourlyData(oldHourlyData);
+        
+        $("p.inner2").replaceWith('');
+    });
+    
 }

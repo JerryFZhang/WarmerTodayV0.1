@@ -1,35 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title> Warmer - Feel the Weather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <script src="js/min/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="js/chart.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <script src="js/weather.js"></script>
     <script src="js/getLocationFromIP.js"></script>
-    <script src="js/min/googleAnalytics.js"></script>
-    <script>
-  	$(document).ready( function(){
-  		//Get the canvas & context
-  		var c = $('#c');
-  		var ct = c.get(0).getContext('2d');
-//  		var container = $(c).parent();
-//  		//Run function when browser  resize
-//	  	$(window).resize(respondCanvas);
-//	  	function respondCanvas(){
-//  			c.attr('width', 0.75*($(container).width())); //max width
-//  			c.attr('height', 0.75*($(container).height())); //max height
-//		}
-//		respondCanvas();
-//         	c.width = window.innerWidth * .5;
-//	c.height = window.innerHeight * .5;
-  	});
-       
-    </script>
+    <script src="js/googleAnalytics.js"></script>
 </head>
 
 <body>
