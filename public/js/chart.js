@@ -37,6 +37,7 @@ function showPosition(position) {
             oldHourlyDataToCel[i] = convertToCelcius(temp);
         };
         console.log(oldHourlyDataToCel);
+        $("p.inner2").replaceWith('');
     });
     // Post the location data to backend and get the weather information.
     $.post('/current', {lat: lat, lng: lng}, function (data) {
@@ -44,7 +45,7 @@ function showPosition(position) {
         data = JSON.parse(data);
         currentHourlyData = data.hourly.data;
         //  Display current summary     
-        //        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
         
         // Extract hourly tempurature and stored in an array
         for (var i = 0; i < currentHourlyData.length; i++) {
