@@ -65,45 +65,43 @@ function convertToCelcius(fren) {
 function getTimeArray(){
     
     // Get current hour
-    var currentTime = new Date;
-    var hour = currentTime.getHours();
-    
+    var currentHour = new Date().getHours();
     // 24-hour clock integer array
     var $24h = [];
     // 12-hour clock string array
     var $12h = [];
     
     for (var i = 0; i < 24; i++) {
-        var addedHour = i + hour;
+        var addedHour = i + currentHour;
         if (addedHour > 24) {
-            $24h[i] = hour + i - 24;
+            $24h[i] = currentHour + i - 24;
         }
         else {
-            $24h[i] = hour + i;
+            $24h[i] = currentHour + i;
         }
     }
     
     // Convert 24h to 12h
     for (var i = 0; i < 24; i++) {
         switch (true) {
-                
         case $24h[i] > 0 && $24h[i] < 12:
-            $12h[i] = ($24h[i]) + 'am';
-            break;
+                $12h[i] = ($24h[i]) + 'am';
+                break;
                 
-        case $24h[i] == 12:
-            $12h[i] = '12pm';
-            break;
+        case $24h[i] == 12: 
+                $12h[i] = '12pm'; 
+                break;
                 
-        case $24h[i] > 12 && $24h[i] < 24:
-            $12h[i] = ($24h[i] - 12) + 'pm';
-            break;
+        case $24h[i] > 12 && $24h[i] < 24: 
+                $12h[i] = ($24h[i] - 12) + 'pm';
+                break;
                 
         case $24h[i] == 24:
-            $12h[i] = '12am';
-            break;
+                $12h[i] = '12am';
+                break;
         }
     }
+    
     return $12h;
 }
 
