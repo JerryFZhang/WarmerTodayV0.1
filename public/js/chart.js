@@ -19,8 +19,10 @@ function showPosition(position) {
     // Store latitude and longitude as a float from the json object.
     lat = parseFloat(JSON.stringify(position.coords.latitude));
     lng = parseFloat(JSON.stringify(position.coords.longitude));
+    
     // Display location on the page.
-    $("p.location").replaceWith('<p>Latitude: ' + lat.toFixed(2) + '<br>Longitude: ' + lng.toFixed(2) + '</p>');
+    $("p.location").replaceWith('');
+    
     // Post the location data to backend and get the later information
     $.post('/old', {lat: lat, lng: lng
     }, function (data) {
@@ -60,29 +62,36 @@ function convertToCelcius(fren) {
 }
 
 function getDateArray(){
-        // Get current hour
-    var time = new Date;
-    var hour = time.getHours();
-    // Generate 24 hour time string
-    var lables = [];
+    
+    // Get current hour
+    var currentTime = new Date;
+    var hour = currentTime.getHours();
+    
+    // 24-hour clock integer array
+    var $24h = [];
+    // 12-hour clock string array
+    var $12h = [];
+    
     for (var i = 0; i < 24; i++) {
         var addedHour = i + hour;
         if (addedHour > 24) {
-            lables[i] = hour + i - 24;
+            $24h[i] = hour + i - 24;
         }
         else {
-            lables[i] = hour + i;
+            $24h[i] = hour + i;
         }
     }
+    
     // Convert 24h to 12h
-    var lablesString = [];
     for (var i = 0; i < 24; i++) {
         switch (true) {
-        case lables[i] > 0 && lables[i] < 12:
-            lablesString[i] = (lables[i]) + 'am';
+                
+        case $24h[i] > 0 && $24h[i] < 12:
+            $12h[i] = ($24h[i]) + 'am';
             break;
-        case lables[i] == 12:
-            lablesString[i] = '12pm';
+                
+        case twentyFourHours[i] == 12:
+            $12h[i] = '12pm';
             break;
         case lables[i] > 12 && lables[i] < 24:
             lablesString[i] = (lables[i] - 12) + 'pm';
@@ -92,7 +101,7 @@ function getDateArray(){
             break;
         }
     }
-    return lablesString;
+    return $12h;
 }
 
 function chart() {
