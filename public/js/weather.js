@@ -17,6 +17,10 @@ function showPosition(position) {
     // Remove location alert on the page.
     $("p.location").replaceWith('');
     getWeather(lat,lng);
+    
+    $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDruKoQKktEMAOtYSPXQrYe37kIst1EcS8',function (data){ 
+        console.log(data);
+    });
 }
 
 function convertToCelcius(fren) {
