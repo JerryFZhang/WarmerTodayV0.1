@@ -18,9 +18,53 @@ function showPosition(position) {
     $("p.location").replaceWith('');
     getWeather(lat,lng);
     
-    $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDruKoQKktEMAOtYSPXQrYe37kIst1EcS8',function (data){ 
+//    $.post('',{
+//  "homeMobileCountryCode": 310,
+//  "homeMobileNetworkCode": 410,
+//  "radioType": "gsm",
+//  "carrier": "Vodafone",
+//  "considerIp": "true"},function (data){ 
+//        
+//    });
+    
+    $.ajax({
+    type: "POST"
+    , url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDruKoQKktEMAOtYSPXQrYe37kIst1EcS8"
+    , dataType: "application/json"
+    , data: {
+        "homeMobileCountryCode": 310
+        , "homeMobileNetworkCode": 260
+        , "radioType": "gsm"
+        , "carrier": "T-Mobile"
+        , "cellTowers": [
+            {
+                "cellId": 39627456
+                , "locationAreaCode": 40495
+                , "mobileCountryCode": 310
+                , "mobileNetworkCode": 260
+                , "age": 0
+                , "signalStrength": -95
+  }
+ ]
+        , "wifiAccessPoints": [
+            {
+                "macAddress": "01:23:45:67:89:AB"
+                , "signalStrength": 8
+                , "age": 0
+                , "signalToNoiseRatio": -65
+                , "channel": 8
+  }
+            , {
+                "macAddress": "01:23:45:67:89:AC"
+                , "signalStrength": 4
+                , "age": 0
+  }
+ ]
+    },
+    success: function (data) {
         console.log(data);
-    });
+    }
+, });
 }
 
 function convertToCelcius(fren) {
