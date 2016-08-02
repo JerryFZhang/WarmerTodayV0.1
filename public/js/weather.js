@@ -183,3 +183,15 @@ function getWeather(lat, lng){
     });
     
 }
+
+$('#_12hour').on('click',function(){
+    console.log('12hour');
+});
+
+$('#_18hour').on('click',function(){
+    console.log('18hour');
+});
+
+$('#_24hour').on('click',function(){
+    console.log('24hour');
+});
