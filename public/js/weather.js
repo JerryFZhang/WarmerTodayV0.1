@@ -18,7 +18,7 @@ function showPosition(position) {
     $("p.location").replaceWith('');
     getWeather(lat,lng);
   
-    $.post("www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDruKoQKktEMAOtYSPXQrYe37kIst1EcS8", {}, function (data){
+    $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", {}, function (data){
         console.log(JSON.stringify(data));
         console.log(data);
     });
