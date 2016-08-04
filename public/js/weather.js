@@ -1,28 +1,11 @@
-
-if (navigator.geolocation) {
-    //Call location function in and pass the location.
-    navigator.geolocation.getCurrentPosition(showPosition);
-}
-else {
-    // Location not supported.
-    $("p.location").replaceWith("Geolocation is not supported by this browser.");
-}
-
-function showPosition(position) {
+$.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", {}, function (data){
     var lat, lng;
-    // Store latitude and longitude as a float from the json object.
-    lat = parseFloat(JSON.stringify(position.coords.latitude));
-    lng = parseFloat(JSON.stringify(position.coords.longitude));
-    
-    // Remove location alert on the page.
+    lat = parseFloat(JSON.stringify(data.location.lat));
+    lng = parseFloat(JSON.stringify(data.location.lng));
     $("p.location").replaceWith('');
     getWeather(lat,lng);
-  
-    $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", {}, function (data){
-        console.log(JSON.stringify(data));
-        console.log(data);
-    });
-}
+});
+
 
 function convertToCelcius(fren) {
     var celc = (fren - 32) * 5 / 9;
