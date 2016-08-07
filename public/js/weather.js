@@ -4,6 +4,11 @@ $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
     lng = parseFloat(JSON.stringify(data.location.lng));
     $("p.location").replaceWith('');
     getWeather(lat,lng);
+    $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", function (data){ 
+        console.log(data.results);
+        console.log(JSON.stringify(data.results));
+        var results = data.results;
+    });
 });
 
 
