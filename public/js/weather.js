@@ -8,7 +8,7 @@ $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
         console.log(JSON.stringify(data.results[0].address_components[3].long_name));
 //        console.log(JSON.stringify(data.results[0].address_components[5].long_name));
 //        console.log(JSON.stringify(data.results[0].address_components[6].long_name));
-        $("p.location2").replaceWith('<h2>' + data.results[0].address_components[3].long_name + '</h2>');
+        $("p.location2").replaceWith('<h2>' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
 //        var results = data.results;
     });
 });
@@ -114,11 +114,11 @@ function getWeather(lat, lng){
         var currentHourlyData = data.hourly.data;
         
         currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
+        console.log(currentHourlyDataToCel);
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
         
-        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2><br>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
     });
-    
     $.post('/old', {lat: lat, lng: lng}, function (data) {
         // Weather information passed
         data = JSON.parse(data);
@@ -126,6 +126,7 @@ function getWeather(lat, lng){
         
         oldHourlyDataToCel = parseHourlyData(oldHourlyData);
         
+        console.log(oldHourlyData);
         $("p.inner2").replaceWith('');
     });
     

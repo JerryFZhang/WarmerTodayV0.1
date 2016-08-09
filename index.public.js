@@ -9,9 +9,7 @@ var path = require('path');
 var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
-var now = new Date();
-var yesterday = new Date();
-yesterday.setDate(now.getDate()-1);
+
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -39,8 +37,11 @@ app.post('/current', function (req, res) {
 
 // serving historical data
 app.post('/old', function (req, res) {
-    //'2008-01-01T00:00:01Z'
-    forecastio.timeMachine(req.body.lat, req.body.lng, yesterday.toISOString().substr(0,19)+'Z').then(function (data) {
+    var now = new Date();
+    var yesterday = new Date();
+    yesterday.setDate(now.getDate()-1);
+    var requested = yesterday.toISOString().substr(0,19)+'Z';
+    forecastio.timeMachine(req.body.lat, req.body.lng, requested).then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 
