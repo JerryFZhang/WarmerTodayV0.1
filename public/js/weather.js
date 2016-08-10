@@ -21,45 +21,46 @@ function convertToCelcius(fren) {
 
 function getTimeArray(){
     
-    // Get current hour
-    var currentHour = new Date().getHours();
-    // 24-hour clock integer array
-    var $24h = [];
-    // 12-hour clock string array
-    var $12h = [];
+//    // Get current hour
+//    var currentHour = new Date().getHours();
+//    // 24-hour clock integer array
+//    var $24h = [];
+//    // 12-hour clock string array
+//    var $12h = [];
+//    
+//    for (var i = 0; i < 24; i++) {
+//        var addedHour = i + currentHour;
+//        if (addedHour > 24) {
+//            $24h[i] = currentHour + i - 24;
+//        }
+//        else {
+//            $24h[i] = currentHour + i;
+//        }
+//    }
+//    
+//    // Convert 24h to 12h
+//    for (var i = 0; i < 24; i++) {
+//        switch (true) {
+//        case $24h[i] > 0 && $24h[i] < 12:
+//                $12h[i] = ($24h[i]) + 'am';
+//                break;
+//                
+//        case $24h[i] == 12: 
+//                $12h[i] = '12pm'; 
+//                break;
+//                
+//        case $24h[i] > 12 && $24h[i] < 24: 
+//                $12h[i] = ($24h[i] - 12) + 'pm';
+//                break;
+//                
+//        case $24h[i] == 24:
+//                $12h[i] = '12am';
+//                break;
+//        }
+//    }
     
-    for (var i = 0; i < 24; i++) {
-        var addedHour = i + currentHour;
-        if (addedHour > 24) {
-            $24h[i] = currentHour + i - 24;
-        }
-        else {
-            $24h[i] = currentHour + i;
-        }
-    }
-    
-    // Convert 24h to 12h
-    for (var i = 0; i < 24; i++) {
-        switch (true) {
-        case $24h[i] > 0 && $24h[i] < 12:
-                $12h[i] = ($24h[i]) + 'am';
-                break;
-                
-        case $24h[i] == 12: 
-                $12h[i] = '12pm'; 
-                break;
-                
-        case $24h[i] > 12 && $24h[i] < 24: 
-                $12h[i] = ($24h[i] - 12) + 'pm';
-                break;
-                
-        case $24h[i] == 24:
-                $12h[i] = '12am';
-                break;
-        }
-    }
-    
-    return $12h;
+//    return $12h;
+    return ['12pm','1am','2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
 }
 
 function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
@@ -132,14 +133,14 @@ function getWeather(lat, lng){
     
 }
 
-$('#_12hour').on('click',function(){
-    console.log('12hour');
-});
-
-$('#_18hour').on('click',function(){
-    console.log('18hour');
-});
-
-$('#_24hour').on('click',function(){
-    console.log('24hour');
-});
+//$('#_12hour').on('click',function(){
+//    console.log('12hour');
+//});
+//
+//$('#_18hour').on('click',function(){
+//    console.log('18hour');
+//});
+//
+//$('#_24hour').on('click',function(){
+//    console.log('24hour');
+//});
