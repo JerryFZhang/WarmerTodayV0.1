@@ -38,10 +38,22 @@ app.post('/current', function (req, res) {
 // serving historical data
 app.post('/old', function (req, res) {
     var now = new Date();
+    
     var yesterday = new Date();
     yesterday.setDate(now.getDate()-1);
-    var requested = yesterday.toISOString().substr(0,19)+'Z';
-    forecastio.timeMachine(req.body.lat, req.body.lng, requested).then(function (data) {
+
+    var requestedToday = now.toISOString().substr(0,19)+'Z';
+    var requestedYesterday = yesterday.toISOString().substr(0,19)+'Z';
+    
+    console.log(requestedToday);
+    console.log(requestedYesterday);
+    
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedToday).then(function (data) {
+//        res.send(JSON.stringify(data, null, 2));
+        console.log(data.hourly.data);
+    });
+    
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedYesterday).then(function (data) {
         res.send(JSON.stringify(data, null, 2));
     });
 

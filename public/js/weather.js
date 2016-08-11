@@ -5,9 +5,6 @@ $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
     $("p.location").replaceWith('');
     getWeather(lat,lng);
     $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", function (data){ 
-        console.log(JSON.stringify(data.results[0].address_components[3].long_name));
-//        console.log(JSON.stringify(data.results[0].address_components[5].long_name));
-//        console.log(JSON.stringify(data.results[0].address_components[6].long_name));
         $("p.location2").replaceWith('<h2>' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
 //        var results = data.results;
     });
