@@ -37,25 +37,35 @@ app.post('/current', function (req, res) {
 
 // serving historical data
 app.post('/old', function (req, res) {
-    var now = new Date();
     
+ 
+    // Parsing date
+    var now = new Date();
     var yesterday = new Date();
     yesterday.setDate(now.getDate()-1);
-
-    var requestedToday = now.toISOString().substr(0,19)+'Z';
-    var requestedYesterday = yesterday.toISOString().substr(0,19)+'Z';
+    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
+    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
+    console.log(requestedTimeToday);
+    console.log(requestedTimeYesterday);
     
-    console.log(requestedToday);
-    console.log(requestedYesterday);
+    // Parsing Weather
+    var todayHourly, yesterdayHourly;
     
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedToday).then(function (data) {
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
 //        res.send(JSON.stringify(data, null, 2));
-        console.log(data.hourly.data);
+        console.log('ttttttttttt'+data.hourly.data);
+        todayHourly = data.hourly.data;
     });
     
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedYesterday).then(function (data) {
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
+        yesterdayHourly = data.hourly.data;
+        
+        console.log('yyyyyyy'+yesterdayHourly);
         res.send(JSON.stringify(data, null, 2));
+        
     });
+    
+    
 
 });
 
