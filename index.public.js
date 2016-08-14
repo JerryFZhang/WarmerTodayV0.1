@@ -53,17 +53,33 @@ app.post('/old', function (req, res) {
     
     forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
 //        res.send(JSON.stringify(data, null, 2));
-        console.log('ttttttttttt'+data.hourly.data);
         todayHourly = data.hourly.data;
+        var temp = [];
+        
+        for (var i = 0; i < todayHourly.length; i++) {
+            temp[i] = todayHourly[i].temperature;    
+        }
+    
+        console.log(temp);
+//            res.send(JSON.stringify(data, null, 2));
     });
+    
     
     forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
         yesterdayHourly = data.hourly.data;
-        
-        console.log('yyyyyyy'+yesterdayHourly);
-        res.send(JSON.stringify(data, null, 2));
+
+        var temp = [];
+    
+        for (var i = 0; i < yesterdayHourly.length; i++) {
+            temp[i] = yesterdayHourly[i].temperature;    
+        }
+    
+        console.log(temp);
+            res.send(JSON.stringify(data, null, 2));
         
     });
+    
+    
     
     
 
