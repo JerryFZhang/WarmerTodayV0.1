@@ -49,21 +49,17 @@ app.post('/old', function (req, res) {
     console.log(requestedTimeYesterday);
     
     // Parsing Weather
-    var todayHourly, yesterdayHourly;
-    
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
-//        res.send(JSON.stringify(data, null, 2));
-        todayHourly = parseHourlyData(data.hourly.data);
-        console.log(todayHourly);
-    });
-    
-    
     forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
         yesterdayHourly = parseHourlyData(data.hourly.data);
-        console.log(yesterdayHourly);
+//        console.log(yesterdayHourly);
         res.send(JSON.stringify(data, null, 2));
         
     });
+    //merge two to one and
+    var merged = {
+        today: requestWeather(req,requestedTimeToday),
+        yesterday: requestWeather(req,requestedTimeYesterday)};
+    console.log(merged); //und
     
 });
 
@@ -94,4 +90,13 @@ function parseHourlyData(data){
     }
 //    console.log(temp);
     return temp;
+}
+
+function requestWeather(req,time){
+    forecastio.timeMachine(req.body.lat, req.body.lng, time).then(function (data) {
+//        res.send(JSON.stringify(data, null, 2));
+        var hourly = parseHourlyData(data.hourly.data);
+        console.log(hourly);
+        return hourly;
+    });
 }
