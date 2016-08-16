@@ -56,10 +56,10 @@ app.post('/old', function (req, res) {
         
     });
     //merge two to one and
-    var merged = {
-        today: requestWeather(req,requestedTimeToday),
-        yesterday: requestWeather(req,requestedTimeYesterday)};
-    console.log(merged); //und
+    var todHourly = requestWeather(req,requestedTimeToday);
+    console.log(todHourly);
+    var yesHourly = requestWeather(req,requestedTimeYesterday)
+    console.log(mergeJSON(todHourly,yesHourly));
     
 });
 
@@ -93,10 +93,15 @@ function parseHourlyData(data){
 }
 
 function requestWeather(req,time){
+    var hourly;
     forecastio.timeMachine(req.body.lat, req.body.lng, time).then(function (data) {
-//        res.send(JSON.stringify(data, null, 2));
-        var hourly = parseHourlyData(data.hourly.data);
+        hourly = JSON.stringify(parseHourlyData(data.hourly.data));
         console.log(hourly);
         return hourly;
     });
+    
+}
+function mergeJSON(tod,yes){
+    console.log()
+    return {tod: tod, yes: yes};
 }
