@@ -10,6 +10,7 @@ var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
 
+var todHourly,yesHourly;
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -45,8 +46,8 @@ app.post('/old', function (req, res) {
     yesterday.setDate(now.getDate()-1);
     var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
     var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
-    console.log(requestedTimeToday);
-    console.log(requestedTimeYesterday);
+//    console.log(requestedTimeToday);
+//    console.log(requestedTimeYesterday);
     
     // Parsing Weather
     forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
@@ -56,10 +57,8 @@ app.post('/old', function (req, res) {
         
     });
     //merge two to one and
-    var todHourly = requestWeather(req,requestedTimeToday);
-    console.log(todHourly);
-    var yesHourly = requestWeather(req,requestedTimeYesterday)
-    console.log(mergeJSON(todHourly,yesHourly));
+    requestWeather(req,requestedTimeToday,requestedTimeYesterday);
+    console.log(mergeJSON(todHourly,yesHourly)); 
     
 });
 
@@ -92,14 +91,15 @@ function parseHourlyData(data){
     return temp;
 }
 
-function requestWeather(req,time){
-    var hourly;
-    forecastio.timeMachine(req.body.lat, req.body.lng, time).then(function (data) {
-        hourly = JSON.stringify(parseHourlyData(data.hourly.data));
-        console.log(hourly);
-        return hourly;
+function requestWeather(req,tod,yes){
+    forecastio.timeMachine(req.body.lat, req.body.lng, tod).then(function (data) {
+        todHourly = JSON.stringify(parseHourlyData(data.hourly.data));
+    });
+    forecastio.timeMachine(req.body.lat, req.body.lng, yes).then(function (data) {
+        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
     });
     
+    return todHourly;
 }
 function mergeJSON(tod,yes){
     console.log()
