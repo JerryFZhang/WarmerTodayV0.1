@@ -102,19 +102,19 @@ function parseHourlyData(data){
 }
 
 function getWeather(lat, lng){
-    var currentHourlyDataToCel = [];
-    var oldHourlyDataToCel = [];
+//    var currentHourlyDataToCel = [];
+//    var oldHourlyDataToCel = [];
     
     $.post('/current', {lat: lat, lng: lng}, function (data) {
         
         // Weather information passed
         data = JSON.parse(data);
-        var currentHourlyData = data.hourly.data;
+//        var currentHourlyData = data.hourly.data;
         
-        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
-        console.log(currentHourlyDataToCel);
-        loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
-        
+//        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
+//        console.log(currentHourlyDataToCel);
+//        loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
+        console.log(data);
         $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
     });
     $.post('/old', {lat: lat, lng: lng}, function (data) {

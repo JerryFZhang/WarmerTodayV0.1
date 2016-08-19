@@ -10,7 +10,6 @@ var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 var locationFile  = './public/json/data.json';
 
-var todHourly,yesHourly;
 
 // Set the default port to localhost 3000.
 app.set('port', process.env.PORT || 3000);
@@ -31,9 +30,18 @@ app.get('/', function (req, res) {
 
 // Serving weather data at the moment using current location.
 app.post('/current', function (req, res) {
-    forecastio.forecast(req.body.lat, req.body.lng).then(function (data) {
-        res.send(JSON.stringify(data));
+     var now = new Date();
+    var yesterday = new Date();
+    yesterday.setDate(now.getDate()-1);
+    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
+    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
+        res.send(JSON.stringify(parseHourlyData(data.hourly.data)));
     });
+    
+//    forecastio.forecast(req.body.lat, req.body.lng).then(function (data) {
+//        res.send(JSON.stringify(data));
+//    });
 });
 
 // serving historical data
@@ -56,9 +64,15 @@ app.post('/old', function (req, res) {
         res.send(JSON.stringify(data, null, 2));
         
     });
-    //merge two to one and
-    requestWeather(req,requestedTimeToday,requestedTimeYesterday);
-    console.log(mergeJSON(todHourly,yesHourly)); 
+    
+    var todHourly,yesHourly;
+    
+    
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
+        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
+    });
+    
+    console.log(todHourly + '1231312312312312312312' +yesHourly); 
     
 });
 
@@ -89,19 +103,4 @@ function parseHourlyData(data){
     }
 //    console.log(temp);
     return temp;
-}
-
-function requestWeather(req,tod,yes){
-    forecastio.timeMachine(req.body.lat, req.body.lng, tod).then(function (data) {
-        todHourly = JSON.stringify(parseHourlyData(data.hourly.data));
-    });
-    forecastio.timeMachine(req.body.lat, req.body.lng, yes).then(function (data) {
-        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
-    });
-    
-    return todHourly;
-}
-function mergeJSON(tod,yes){
-    console.log()
-    return {tod: tod, yes: yes};
 }
