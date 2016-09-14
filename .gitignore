@@ -8,3 +8,7 @@ server.js
 weather.json
 
 *.pem
+
+public/js/.DS_Store
+
+.DS_Store
