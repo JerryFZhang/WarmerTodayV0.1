@@ -85,6 +85,7 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
                 , data: oldHourlyDataToCel
         }]
     };
+    console.log(currentHourlyDataToCel + "is the current data" + oldHourlyDataToCel +  'is the old data');
     var MyNewChart = new Chart(chart).Line(data);
 }
 
@@ -98,26 +99,16 @@ function parseHourlyData(data){
             var temp = parseFloat(data[i].apparentTemperature)
             hourlyDataToCel[i] = convertToCelcius(temp);
         };
+    console.log(hourlyDataToCel);
     return hourlyDataToCel;
 }
 
 function getWeather(lat, lng){
-//    var currentHourlyDataToCel = [];
-//    var oldHourlyDataToCel = [];
     
-    $.post('/current', {lat: lat, lng: lng}, function (data) {
-        
-        // Weather information passed
-        data = JSON.parse(data);
-//        var currentHourlyData = data.hourly.data;
-        
-//        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
-//        console.log(currentHourlyDataToCel);
-//        loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
-        console.log(data);
-        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
-    });
-    $.post('/old', {lat: lat, lng: lng}, function (data) {
+    var currentHourlyDataToCel = [];
+    var oldHourlyDataToCel = [];
+    
+     $.post('/old', {lat: lat, lng: lng}, function (data) {
         // Weather information passed
         data = JSON.parse(data);
         var oldHourlyData = data.hourly.data;
@@ -127,6 +118,25 @@ function getWeather(lat, lng){
         console.log(oldHourlyData);
         $("p.inner2").replaceWith('');
     });
+    
+    $.post('/current', {lat: lat, lng: lng}, function (data) {
+        
+        // Weather information passed
+        data = JSON.parse(data);
+        var currentHourlyData = data.hourly.data;
+        
+//        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
+//        console.log(currentHourlyDataToCel);
+        
+        currentHourlyDataToCel = parseHourlyData(currentHourlyData);
+        
+        loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
+        
+        
+        console.log(data);
+        $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+    });
+    
     
 }
 
