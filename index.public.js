@@ -65,16 +65,6 @@ app.post('/old', function (req, res) {
         //This functions as normal
     });
     
-//    var todHourly,yesHourly;
-    
-    
-//    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
-//        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
-////        console.log(yesHourly);
-//    });
-    
-//    console.log(todHourly + '1231312312312312312312' +yesHourly); 
-    
 });
 
 // Custom 404 page.

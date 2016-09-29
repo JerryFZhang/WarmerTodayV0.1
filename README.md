@@ -7,12 +7,11 @@ Powered by [Dark Sky](https://darksky.net/poweredby/).
 
 # Acknowlengements
 - [Express.js](http://expressjs.com/)
-- [Forecast.io](https://developer.forecast.io/)
+- [Dark Sky API (Formerly Forecast.io)](https://darksky.net/dev/)
 - [Node with Forecast.io](https://github.com/soplakanets/node-forecastio)
 - [Node.js](https://nodejs.org/en/)
 - [socket.io](http://socket.io/)
 - [lesscss](http://lesscss.org)
-- [forecase.io](http://forecase.io)
 - [nodemon](https://github.com/remy/nodemon)
 - [AngularJS2 - Planned](https://angular.io/)
 - [Bootstrap](http://getbootstrap.com/)
