@@ -30,29 +30,29 @@ app.get('/', function (req, res) {
 
 // Serving weather data at the moment using current location.
 app.post('/current', function (req, res) {
-     var now = new Date();
-    var yesterday = new Date();
-    yesterday.setDate(now.getDate()-1);
+    var now = new Date();
+//    var yesterday = new Date();
+//    yesterday.setDate(now.getDate()-1);
     var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
-    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
-        res.send(JSON.stringify(parseHourlyData(data.hourly.data)));
-    });
+//    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
     
-//    forecastio.forecast(req.body.lat, req.body.lng).then(function (data) {
-//        res.send(JSON.stringify(data));
-//    });
+    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
+        todayHourly = parseHourlyData(data.hourly.data);
+        console.log(todayHourly);
+        res.send(JSON.stringify(data, null, 2));
+//        This functions as normal
+    });
 });
 
 // serving historical data
 app.post('/old', function (req, res) {
     
- 
+
     // Parsing date
     var now = new Date();
     var yesterday = new Date();
     yesterday.setDate(now.getDate()-1);
-    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
+//    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
     var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
 //    console.log(requestedTimeToday);
 //    console.log(requestedTimeYesterday);
@@ -60,19 +60,20 @@ app.post('/old', function (req, res) {
     // Parsing Weather
     forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
         yesterdayHourly = parseHourlyData(data.hourly.data);
-//        console.log(yesterdayHourly);
+        console.log(yesterdayHourly);
         res.send(JSON.stringify(data, null, 2));
-        
+        //This functions as normal
     });
     
-    var todHourly,yesHourly;
+//    var todHourly,yesHourly;
     
     
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
-        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
-    });
+//    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
+//        yesHourly = JSON.stringify(parseHourlyData(data.hourly.data));
+////        console.log(yesHourly);
+//    });
     
-    console.log(todHourly + '1231312312312312312312' +yesHourly); 
+//    console.log(todHourly + '1231312312312312312312' +yesHourly); 
     
 });
 
