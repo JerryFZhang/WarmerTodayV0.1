@@ -5,7 +5,7 @@ $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
     $("p.location").replaceWith('');
     getWeather(lat,lng);
     $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", function (data){ 
-        $("p.location2").replaceWith('<h2 style="text-align: right;">' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
+        $("p.location2").replaceWith('<h2 style="text-align: right;  font-size: 3.5vw;">' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
 //        var results = data.results;
     });
 });
@@ -90,7 +90,7 @@ function getWeather(lat, lng){
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
         
         //Delete the warning message, replace with currentn wather information.
-        $("p.inner").replaceWith('<h2 style="text-align: right;">' + data.currently.summary + '</h2>' + '<h2 style="text-align: right;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+        $("p.inner").replaceWith('<h2 style="text-align: right; font-size: 3.5vw;">' + data.currently.summary + '</h2>' + '<h2 style="text-align: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
     });
     
     
