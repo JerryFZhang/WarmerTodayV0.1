@@ -45,7 +45,7 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
                 , data: oldHourlyDataToCel
         }]
     };
-    var MyNewChart = new Chart(chart).Line(data);
+    var MyNewChart = new Chart(chart).Line(data, {responsive: true});
 }
 
 function parseHourlyData(data){
@@ -63,7 +63,6 @@ function parseHourlyData(data){
 }
 
 function getWeather(lat, lng){
-    
     var currentHourlyDataToCel = [];
     var oldHourlyDataToCel = [];
     
@@ -84,7 +83,7 @@ function getWeather(lat, lng){
         // Weather information passed
         data = JSON.parse(data);
         var currentHourlyData = data.hourly.data; 
-        
+
         // Covert to celcius
         currentHourlyDataToCel = parseHourlyData(currentHourlyData);
         
