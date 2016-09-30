@@ -123,7 +123,9 @@ function getWeather(lat, lng){
         
         // Weather information passed
         data = JSON.parse(data);
+        console.log(data);
         var currentHourlyData = data.hourly.data;
+        
         
 //        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
 //        console.log(currentHourlyDataToCel);

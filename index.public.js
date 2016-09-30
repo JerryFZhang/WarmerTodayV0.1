@@ -8,7 +8,7 @@ var app = express();
 var path = require('path');
 var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
-var locationFile  = './public/json/data.json';
+//var locationFile  = './public/json/data.json';
 
 
 // Set the default port to localhost 3000.
@@ -31,16 +31,10 @@ app.get('/', function (req, res) {
 // Serving weather data at the moment using current location.
 app.post('/current', function (req, res) {
     var now = new Date();
-//    var yesterday = new Date();
-//    yesterday.setDate(now.getDate()-1);
-    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
-//    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
-    
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeToday).then(function (data) {
-        todayHourly = parseHourlyData(data.hourly.data);
-        console.log(todayHourly);
-        res.send(JSON.stringify(data, null, 2));
-//        This functions as normal
+    var requestedTime = now.toISOString().substr(0,19)+'Z';
+    //Fetching and parsing weather information
+    getWeather(req, requestedTime, function (returned){
+        res.send(JSON.stringify(returned, null, 2));
     });
 });
 
@@ -52,17 +46,11 @@ app.post('/old', function (req, res) {
     var now = new Date();
     var yesterday = new Date();
     yesterday.setDate(now.getDate()-1);
-//    var requestedTimeToday = now.toISOString().substr(0,19)+'Z';
-    var requestedTimeYesterday = yesterday.toISOString().substr(0,19)+'Z';
-//    console.log(requestedTimeToday);
-//    console.log(requestedTimeYesterday);
+    var requestedTime = yesterday.toISOString().substr(0,19)+'Z';
     
-    // Parsing Weather
-    forecastio.timeMachine(req.body.lat, req.body.lng, requestedTimeYesterday).then(function (data) {
-        yesterdayHourly = parseHourlyData(data.hourly.data);
-        console.log(yesterdayHourly);
-        res.send(JSON.stringify(data, null, 2));
-        //This functions as normal
+    //Fetching and parsing weather information
+    getWeather(req, requestedTime, function (returned){
+        res.send(JSON.stringify(returned, null, 2));
     });
     
 });
@@ -92,6 +80,13 @@ function parseHourlyData(data){
     for (var i = 0; i < data.length; i++) {
     temp[i] = data[i].temperature;    
     }
-//    console.log(temp);
     return temp;
 }
+
+function getWeather(location, time, callback){
+    var data = forecastio.timeMachine(location.body.lat, location.body.lng, time).then(function (weather) {
+        callback(weather);
+    });
+}
+
+
