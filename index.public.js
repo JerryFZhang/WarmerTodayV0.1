@@ -1,6 +1,4 @@
 var express = require('express');
-
-//https://github.com/soplakanets/node-forecastio
 var forecaseIO = require('forecastio');
 var forecaseio = new forecaseIO('**********API KEY*************');
 
@@ -8,7 +6,6 @@ var app = express();
 var path = require('path');
 var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
-//var locationFile  = './public/json/data.json';
 
 
 // Set the default port to localhost 3000.
@@ -28,8 +25,9 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-// Serving weather data at the moment using current location.
-app.post('/current', function (req, res) {
+// Serving today's weather.
+app.post('/today', function (req, res) {
+     // Get date.
     var now = new Date();
     var requestedTime = now.toISOString().substr(0,19)+'Z';
     //Fetching and parsing weather information
@@ -39,10 +37,8 @@ app.post('/current', function (req, res) {
 });
 
 // serving historical data
-app.post('/old', function (req, res) {
-    
-
-    // Parsing date
+app.post('/yesterday', function (req, res) {
+    // Get yesterday date.
     var now = new Date();
     var yesterday = new Date();
     yesterday.setDate(now.getDate()-1);
@@ -88,5 +84,3 @@ function getWeather(location, time, callback){
         callback(weather);
     });
 }
-
-

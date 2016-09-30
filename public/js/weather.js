@@ -17,46 +17,6 @@ function convertToCelcius(fren) {
 }
 
 function getTimeArray(){
-    
-//    // Get current hour
-//    var currentHour = new Date().getHours();
-//    // 24-hour clock integer array
-//    var $24h = [];
-//    // 12-hour clock string array
-//    var $12h = [];
-//    
-//    for (var i = 0; i < 24; i++) {
-//        var addedHour = i + currentHour;
-//        if (addedHour > 24) {
-//            $24h[i] = currentHour + i - 24;
-//        }
-//        else {
-//            $24h[i] = currentHour + i;
-//        }
-//    }
-//    
-//    // Convert 24h to 12h
-//    for (var i = 0; i < 24; i++) {
-//        switch (true) {
-//        case $24h[i] > 0 && $24h[i] < 12:
-//                $12h[i] = ($24h[i]) + 'am';
-//                break;
-//                
-//        case $24h[i] == 12: 
-//                $12h[i] = '12pm'; 
-//                break;
-//                
-//        case $24h[i] > 12 && $24h[i] < 24: 
-//                $12h[i] = ($24h[i] - 12) + 'pm';
-//                break;
-//                
-//        case $24h[i] == 24:
-//                $12h[i] = '12am';
-//                break;
-//        }
-//    }
-    
-//    return $12h;
     return ['12pm','1am','2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
 }
 
@@ -85,7 +45,6 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
                 , data: oldHourlyDataToCel
         }]
     };
-    console.log(currentHourlyDataToCel + "is the current data" + oldHourlyDataToCel +  'is the old data');
     var MyNewChart = new Chart(chart).Line(data);
 }
 
@@ -99,7 +58,7 @@ function parseHourlyData(data){
             var temp = parseFloat(data[i].apparentTemperature)
             hourlyDataToCel[i] = convertToCelcius(temp);
         };
-    console.log(hourlyDataToCel);
+//    console.log(hourlyDataToCel);
     return hourlyDataToCel;
 }
 
@@ -108,34 +67,30 @@ function getWeather(lat, lng){
     var currentHourlyDataToCel = [];
     var oldHourlyDataToCel = [];
     
-     $.post('/old', {lat: lat, lng: lng}, function (data) {
+     $.post('/yesterday', {lat: lat, lng: lng}, function (data) {
         // Weather information passed
         data = JSON.parse(data);
         var oldHourlyData = data.hourly.data;
-        
+         
+        // Covert to celcius
         oldHourlyDataToCel = parseHourlyData(oldHourlyData);
         
-        console.log(oldHourlyData);
+        //Delete the warning message.
         $("p.inner2").replaceWith('');
     });
     
-    $.post('/current', {lat: lat, lng: lng}, function (data) {
+    $.post('/today', {lat: lat, lng: lng}, function (data) {
         
         // Weather information passed
         data = JSON.parse(data);
-        console.log(data);
-        var currentHourlyData = data.hourly.data;
+        var currentHourlyData = data.hourly.data; 
         
-        
-//        currentHourlyDataToCel = parseHourlyData(currentHourlyData);        
-//        console.log(currentHourlyDataToCel);
-        
+        // Covert to celcius
         currentHourlyDataToCel = parseHourlyData(currentHourlyData);
         
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
         
-        
-        console.log(data);
+        //Delete the warning message, replace with currentn wather information.
         $("p.inner").replaceWith('<h2>' + data.currently.summary + '</h2>' + '<h2>' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
     });
     
