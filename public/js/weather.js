@@ -17,7 +17,7 @@ function convertToCelcius(fren) {
 }
 
 function getTimeArray(){
-    return ['12pm','','', '3am', '', '', '6am', '', '', '9am', '', '', '12pm', '', '', '3pm', '', '', '6pm', '', '', '9pm', '', '11pm'];
+    return ['12pm','1','2', '3', '4', '5', '6am', '7', '8', '9', '10', '11', '12pm', '1', '2', '3', '4', '5', '6pm', '7', '8', '9', '10', '11pm'];
 }
 
 function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
@@ -44,7 +44,18 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
                 , data: currentHourlyDataToCel
         }]
     };
-    var MyNewChart = new Chart(chart).Line(data, {responsive: true});
+    var option = {
+        responsive: true,
+        showXLabels: 10,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    autoSkip: false
+                }
+            }]
+        }
+    };
+    var MyNewChart = new Chart(chart).Line(data, option);
 }
 
 function parseHourlyData(data){
