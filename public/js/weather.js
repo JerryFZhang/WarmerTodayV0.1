@@ -5,7 +5,7 @@ $.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
     $("p.location").replaceWith('');
     getWeather(lat,lng);
     $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE", function (data){ 
-        $("p.location2").replaceWith('<h2 style="text-align: right;  font-size: 3.5vw;">' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
+        $("p.location2").replaceWith('<h2 style="float: left;  font-size: 3.5vw;">' + data.results[0].address_components[3].long_name + "," + data.results[0].address_components[5].long_name + '</h2>');
 //        var results = data.results;
     });
 });
@@ -25,24 +25,23 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
     var timeLabel = getTimeArray();
     var data = {
         labels: timeLabel
-        , datasets: [{
-                label: "My First dataset"
+        , datasets: [{  label: "Yesterday"
                 , fillColor: "rgba(220,220,220,0.2)"
                 , strokeColor: "rgba(220,220,220,1)"
                 , pointColor: "rgba(220,220,220,1)"
                 , pointStrokeColor: "#fff"
                 , pointHighlightFill: "#fff"
                 , pointHighlightStroke: "rgba(220,220,220,1)"
-                , data: currentHourlyDataToCel
+                , data: oldHourlyDataToCel
         },{
-                label: "My Second dataset"
-                , fillColor: "rgba(151,187,205,0.2)"
-                , strokeColor: "rgba(151,187,205,1)"
-                , pointColor: "rgba(151,187,205,1)"
+               label: "Today"
+                , fillColor: "rgba(220,100,0,0.2)"
+                , strokeColor: "rgba(220,100,0,1)"
+                , pointColor: "rgba(220,100,0,1)"
                 , pointStrokeColor: "#fff"
                 , pointHighlightFill: "#fff"
-                , pointHighlightStroke: "rgba(151,187,205,1)"
-                , data: oldHourlyDataToCel
+                , pointHighlightStroke: "rgba(220,100,0,1)"
+                , data: currentHourlyDataToCel
         }]
     };
     var MyNewChart = new Chart(chart).Line(data, {responsive: true});
@@ -90,10 +89,51 @@ function getWeather(lat, lng){
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
         
         //Delete the warning message, replace with currentn wather information.
-        $("p.inner").replaceWith('<h2 style="text-align: right; font-size: 3.5vw;">' + data.currently.summary + '</h2>' + '<h2 style="text-align: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2><br>');
+        $("p.inner").replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2>' + '<br style="clear:both" /> <h2 style="float: left; font-size: 3.5vw;">' + data.currently.summary + '</h2>');
+        // Calculate averages
+        var currentAverage = calculateAverage(currentHourlyDataToCel);
+        var oldAverage = calculateAverage(oldHourlyDataToCel);
+        console.log(currentAverage + ' is current ' + oldAverage + ' is old average.');
+        
+        var currentStandartDiviation = calculateStandardDiviation(currentHourlyDataToCel,currentAverage);
+        var oldStandartDiviation = calculateStandardDiviation(oldHourlyDataToCel,oldAverage);
+        console.log(currentStandartDiviation + ' is current ' + oldStandartDiviation + ' is old std.');
+        
+        var currentHighAndLow = getExtremas(currentHourlyDataToCel);
+        var oldHighAndLow = getExtremas(oldHourlyDataToCel);
+        console.log(currentHighAndLow[0] + ' is current high ' + currentHighAndLow[1] + 'is current low ' 
++ oldHighAndLow[0] + ' is old high ' + oldHighAndLow[1] + ' is old low.');
     });
     
     
+}
+
+function calculateAverage(data){
+    var sum = 0;
+    for (var i = 0; i< data.length; i++){
+        sum += parseInt(data[i]);
+        console.log(data[i]);
+    }
+    return sum/24;
+}
+
+function calculateStandardDiviation(data,average){
+    var differenceArray = new Array(24);
+    var std = 0;
+    for (var i = 0; i < data.length ; i++){
+        differenceArray[i] = data[i] - average;
+    }
+    console.log(differenceArray);
+    for (var i = 0; i< data.length; i++){
+        std += Math.pow(differenceArray[0],2);
+    }
+    std = Math.sqrt(std);
+    return std;
+}
+
+function getExtremas(data){
+    data.sort(function(a, b){return b - a});
+    return [data[0], data[23]];
 }
 
 //$('#_12hour').on('click',function(){
