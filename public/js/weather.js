@@ -35,12 +35,12 @@ function loadChart(currentHourlyDataToCel, oldHourlyDataToCel) {
                 , data: oldHourlyDataToCel
         },{
                label: "Today"
-                , fillColor: "rgba(220,100,0,0.2)"
-                , strokeColor: "rgba(220,100,0,1)"
-                , pointColor: "rgba(220,100,0,1)"
+                , fillColor: "rgba(255,168,0,0.2)"
+                , strokeColor: "rgba(255,168,0,1)"
+                , pointColor: "rgba(255,168,0,1)"
                 , pointStrokeColor: "#fff"
                 , pointHighlightFill: "#fff"
-                , pointHighlightStroke: "rgba(220,100,0,1)"
+                , pointHighlightStroke: "rgba(255,168,0,1)"
                 , data: currentHourlyDataToCel
         }]
     };
