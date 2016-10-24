@@ -99,8 +99,6 @@ function getWeather(lat, lng){
         
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel); 
         
-        //Delete the warning message, replace with currentn wather information.
-        $("p.inner").replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2>' + '<br style="clear:both" /> <h2 style="float: left; font-size: 3.5vw;">' + data.currently.summary + '</h2>');
         // Calculate averages
         var currentAverage = calculateAverage(currentHourlyDataToCel);
         var oldAverage = calculateAverage(oldHourlyDataToCel);
@@ -114,6 +112,10 @@ function getWeather(lat, lng){
         var oldHighAndLow = getExtremas(oldHourlyDataToCel);
         console.log(currentHighAndLow[0] + ' is current high ' + currentHighAndLow[1] + 'is current low ' 
 + oldHighAndLow[0] + ' is old high ' + oldHighAndLow[1] + ' is old low.');
+        
+        //Delete the warning message, replace with currentn wather information.
+        $("p.inner").replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2>' + '<br style="clear:both" />' + '<p style="float: right;  font-size: 2vw;">' + 'H: ' + currentHighAndLow[0] + ' Cº ' + 'L: ' + currentHighAndLow[1] + ' Cº</p>' + '<br style="clear:both" /> <h2 style="float: left; font-size: 3.5vw;">' + data.currently.summary + '</h2>');
+        
     });
     
     
