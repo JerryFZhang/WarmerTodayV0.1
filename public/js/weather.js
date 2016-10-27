@@ -116,8 +116,7 @@ function getWeather(lat, lng) {
         //        console.log('The screen height is : ' + height);
         //Delete the warning message, replace with currentn wather information.
         $("p.inner").replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº</h2>' + '<br style="clear:both" />' + '<p style="float: right;  font-size: 2vw;">' + 'H: ' + currentHighAndLow[0] + ' Cº ' + 'L: ' + currentHighAndLow[1] + ' Cº</p>' + '<br style="clear:both" />');
-        
-        $("span.sum").replaceWith('<span style = "font-weight: normal;">' + data.currently.summary+'</h2>');
+        $("span.sum").replaceWith('<span style = "font-weight: normal;">' + data.currently.summary + '</h2>');
     });
 }
 

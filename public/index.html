@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title> Warmer - Feel the Weather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Warmer - Feel the Weather" 
-      content="A new type of weather application.">
+    <meta name="Warmer - Feel the Weather" content="A new type of weather application.">
     <meta name="Fengwei Zhang" content="Shaumik Daityari">
-
-<!--    <link rel="stylesheet" type="text/css" href="./css/index.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="./css/index.css">-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/weather.js"></script>
     <script src="js/googleAnalytics.js"></script>
 </head>
 
 <body>
-    
-<!--    <div class="container-fluid">-->
-<!--        <h1 class="warm">warm</h1>-->
+    <!--    <div class="container-fluid">-->
+    <!--        <h1 class="warm">warm</h1>-->
     <div style="margin:5vw 10vw;">
         <div class="col-xs-12 col-sm-6 col-md-8">
             <h2>
                 <span class="location2">Error displaying location</span>
                 <span class="sum">Unable to current summary, please try refresh, if this is presistent, please <a href = "mailto:hi@fengwei.ca?Subject=Issue%20with%20Warmer.pro">send email to hi@fengwei.ca</a></span>
-            </h2>
+            </h2> </div>
+        <div class="col-xs-6 col-md-4">
+            <p class="inner">Unable to fetch weather information.</p>
         </div>
-        <div class="col-xs-6 col-md-4"><p class="inner">Unable to fetch weather information.</p></div>
-    
-    <p class="inner2">Unable to fetch old weather information.</p>
-    <p class="location">Error fetching location.</p>
+        <p class="inner2">Unable to fetch old weather information.</p>
+        <p class="location">Error fetching location.</p>
     </div>
-<!--    </div>-->
-<!--    <p class="city">City Unknown</p>-->
+    <!--    </div>-->
+    <!--    <p class="city">City Unknown</p>-->
     <!--
     <div class="container-fluid">
     <h1 class="same">same</h1></div>
     <div class="container-fluid">
     <h1 class="cold">cold</h1></div>
     -->
-<!--
+    <!--
     <button id="_12hour">Request 12 hour forecast</button><br>
     <button id="_18hour">Request 18 hour forecast</button><br>
     <button id="_24hour">Request 24 hour forecast(default)</button><br>
 -->
     <div style="margin:5vw 10vw;">
-    <canvas id="c" width="760vw" height="360vw" style = "position: absolute; bottom:10vh; left: 0; right: 0; margin:auto;">canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+        <canvas id="c" width="760vw" height="360vw" style="position: absolute; bottom:10vh; left: 0; right: 0; margin:auto;">canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </body>
+
 </html>
