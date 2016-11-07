@@ -27,7 +27,8 @@
     "jsonfile": "^2.3.1",
     "node": "0.0.0",
     "nodemon": "^1.9.2",
-    "socket.io": "^1.4.6"
+    "socket.io": "^1.4.6",
+    "stripe": "^4.12.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
