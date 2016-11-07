@@ -17,7 +17,7 @@
 <body>
     <!--    <div class="container-fluid">-->
     <!--        <h1 class="warm">warm</h1>-->
-    <div style="margin:5vw 10vw;">
+    <div style="margin:2.5vw 10vw; width:75vw; height:75vh;">
         <div class="col-xs-12 col-sm-6 col-md-8">
             <h2>
                 <span class="location2">Error displaying location</span>
@@ -30,10 +30,15 @@
         <p class="location">Error fetching location.</p>
         
         <div class="container-fluid">
-        <canvas id="c" width="760vw" height="360vw">canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas>
+            <canvas id="c" width="760vw" height="360vw" style="margin:2.5vw 0 0 0 ";>canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas>
+        </div>
+        <div class=".col-md-4" style="margin:5vw 10vw; position:fixed; bottom:0px; right:0px;">
+            <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a>, © 2016 <a href="http://fengwei.ca">Fengwei Zhang.</a><br/><form id ="payment-form"><button class = "submit"> Support my development</button></form>
+        </p>
+        </div>
     </div>
-    </div>
-    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    
+    <a href="https://github.com/zhang96/Warmer.Pro"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <!--    </div>-->
     <!--    <p class="city">City Unknown</p>-->
     <!--
@@ -86,10 +91,6 @@
         };
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-    <div class=".col-md-4" style="margin:5vw 10vw; position:fixed; bottom:0px; right:0px;">
-        <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a>, © 2016 <a href="http://fengwei.ca">Fengwei Zhang.</a><br/><a> Support my development</a>
-        </p>
-    </div>
-</body>
-
+    
+    </body>
 </html>
