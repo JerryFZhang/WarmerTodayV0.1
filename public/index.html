@@ -33,7 +33,7 @@
         </div>
         <div class=".col-md-4" style="margin:5vw 10vw; position:fixed; bottom:0px; right:0px;">
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a>, © 2016 <a href="http://fengwei.ca">Fengwei Zhang.</a>
-                <br/><button right:0px; id="customButton" class="btn btn-primary">Pay $0.99 to support this site.</button></p>
+                <br/><button right:0px; id="customButton" class="btn btn-primary">Buy me a cup of coffee - $0.99.</button></p>
         </div>
         
         <script src="https://checkout.stripe.com/checkout.js"></script>
@@ -51,9 +51,9 @@
                 // Open Checkout with further options:
                 handler.open({
                     name: 'zhang96'
-                    , description: '2 widgets'
+                    , description: 'Pay $0.99 to suppport me and this application.'
                     , currency: 'cad'
-                    , amount: 2000
+                    , amount: 99
                 });
                 e.preventDefault();
             });
