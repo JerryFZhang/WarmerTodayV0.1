@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+<noscript>
+    
+	<style type="text/css">
 
+		body {
+			overflow: hidden;
+		}
+
+		.noscript-overlay {
+			background-color: white;
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			z-index: 2000;
+
+		}
+
+		.noscript-text {
+            margin: 50px 50px;
+		}
+        .noscript-font{
+            color: #333;
+        }
+	</style>
+	<div class="noscript-overlay">
+		<div class="noscript-text">
+			<h1 class="noscript-font">
+                This website requires JavaScript to display graphical content.
+			</h1>
+			<p class="noscript-font"><strong>Please check your browser settings and turn on JavaScript.</strong></p>
+            <p class="noscript-font">If you can't find the setting, try searching with your browser name (Chrome, Firefox, etc.) and "turning on JavaScript".</p>
+            <p class="noscript-font">We do not track you overthe web whatsoever.</p>
+		</div>
+	</div>
+
+</noscript>
+
+    
 <head>
     <title> Warmer - Feel the Weather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +67,7 @@
         <p class="inner2">Unable to fetch old weather information.</p>
         <p class="location">Error fetching location.</p>
         <div class="container-fluid">
-            <canvas id="c" width="760vw" height="360vw" style="margin:2.5vw 0 0 0 " ;>canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas>
+            <canvas id="c" width="760vw" height="360vw" style="margin:2.5vw 0 0 0 " ;>Canvas is not supported by this browser please update your current or download the latest version of Safari, Google Chrome or Firefox. </canvas>
         </div>
         <div class=".col-md-4" style="margin:5vw 10vw; position:fixed; bottom:0px; right:0px;">
             <p>Powered by <a href="https://darksky.net/poweredby/">Dark Sky</a>, © 2016 <a href="http://fengwei.ca">Fengwei Zhang.</a>
