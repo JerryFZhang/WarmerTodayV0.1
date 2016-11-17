@@ -91,29 +91,35 @@ function getWeather(lat, lng) {
         lat: lat
         , lng: lng
     }, function (data) {
+        
         // Weather information passed
         data = JSON.parse(data);
         var currentHourlyData = data.hourly.data;
+        
         // Covert to celcius
         currentHourlyDataToCel = parseHourlyData(currentHourlyData);
         loadChart(currentHourlyDataToCel, oldHourlyDataToCel);
+        
         // Calculate averages
         var currentAverage = calculateAverage(currentHourlyDataToCel);
         var oldAverage = calculateAverage(oldHourlyDataToCel);
+        
         //Print avg
         console.log(currentAverage + ' is current ' + oldAverage + ' is old average.');
+        
         // Calculate std
         var currentStandartDiviation = calculateStandardDiviation(currentHourlyDataToCel, currentAverage);
         var oldStandartDiviation = calculateStandardDiviation(oldHourlyDataToCel, oldAverage);
+        
         //Print std
         console.log(currentStandartDiviation + ' is current ' + oldStandartDiviation + ' is old std.');
         // Calculate extremas
         var currentHighAndLow = getExtremas(currentHourlyDataToCel);
         var oldHighAndLow = getExtremas(oldHourlyDataToCel);
+        
         //Print extremas
         console.log(currentHighAndLow[0] + ' is current high ' + currentHighAndLow[1] + 'is current low ' + oldHighAndLow[0] + ' is old high ' + oldHighAndLow[1] + ' is old low.');
-        //        var height = $(document).height();
-        //        console.log('The screen height is : ' + height);
+       
         //Delete the warning message, replace with currentn wather information.
         $("p.inner").replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + convertToCelcius(data.currently.temperature) + ' Cº' + '<br style="clear:both" />' + '<p style="float: right;  font-size: 2vw;">' + 'H: ' + currentHighAndLow[0] + ' Cº ' + 'L: ' + currentHighAndLow[1] + ' Cº</p>' + '<br/>');
         $("span.sum").replaceWith('<span style="font-weight: normal; font-size: 3.5vw;">' + data.currently.summary + '</span>');
