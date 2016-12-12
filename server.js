@@ -2,10 +2,13 @@ var express = require('express');
 var forecastIO = require('forecastio');
 var forecastIOID = '';
 var fs = require('fs');
+
+// Use synchronous JavaScript call to fetch API id stored in forecast.txt.
+// You can replace the forecast.txt with your id.
 var forecastIOID = fs.readFileSync('forecast.txt').toString();
-
-
+// Use API id fetched from file system.
 var forecastio = new forecastIO(forecastIOID);
+
 var app = express();
 var path = require('path');
 var jsonfile = require('jsonfile');
