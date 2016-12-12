@@ -3,6 +3,8 @@ var forecastIO = require('forecastio');
 var forecastIOID = '';
 var fs = require('fs');
 var forecastIOID = fs.readFileSync('forecast.txt').toString();
+
+
 var forecastio = new forecastIO(forecastIOID);
 var app = express();
 var path = require('path');

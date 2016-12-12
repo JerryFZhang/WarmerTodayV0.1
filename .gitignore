@@ -2,11 +2,6 @@ node_modules
 
 npm-debug.log
 
-server.js
-/index.js
-/index.archive.js
-weather.json
-
 *.pem
 
 public/js/.DS_Store
