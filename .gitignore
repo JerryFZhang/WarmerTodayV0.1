@@ -12,3 +12,5 @@ weather.json
 public/js/.DS_Store
 
 .DS_Store
+
+forecast.txt

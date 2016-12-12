@@ -1,7 +1,7 @@
 # Warmer.Pro
 A new type of weather application.
 
-[Alpha](http://Warmer.pro) is deployed and avaliable for the public. Beta will be abaliavle for public use sometimes in January.
+[Alpha](http://Warmer.pro) is deployed and avaliable for the public. Beta will be abaliavle for public use sometimes in January. And it will be rewritten to use some new JS features and NewAPI
 
 Powered by [Dark Sky](https://darksky.net/poweredby/).
 

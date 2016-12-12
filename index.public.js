@@ -1,7 +1,9 @@
 var express = require('express');
-var forecaseIO = require('forecastio');
-var forecaseio = new forecaseIO('**********API KEY*************');
-
+var forecastIO = require('forecastio');
+var forecastIOID = '';
+var fs = require('fs');
+var forecastIOID = fs.readFileSync('forecast.txt').toString();
+var forecastio = new forecastIO(forecastIOID);
 var app = express();
 var path = require('path');
 var jsonfile = require('jsonfile');
@@ -14,7 +16,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 
 // Parsing coming JSON object
-app.use(bodyParser()); 
+app.use(bodyParser.json()); 
 
 // Serving all public content only from ./public
 app.use(express.static(path.join(__dirname, 'public')));
