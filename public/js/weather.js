@@ -75,12 +75,14 @@ function parseHourlyData(data) {
 function getWeather(lat, lng) {
     var currentHourlyDataToCel = [];
     var oldHourlyDataToCel = [];
+    console.log(lat);
+    console.log(lng);
     $.post('/yesterday', {
         lat: lat
         , lng: lng
     }, function (data) {
         // Weather information passed
-        data = JSON.parse(data);
+//        data = JSON.parse(data);
         var oldHourlyData = data.hourly.data;
         // Covert to celcius
         oldHourlyDataToCel = parseHourlyData(oldHourlyData);
@@ -93,7 +95,7 @@ function getWeather(lat, lng) {
     }, function (data) {
         
         // Weather information passed
-        data = JSON.parse(data);
+//        data = JSON.parse(data);
         var currentHourlyData = data.hourly.data;
         
         // Covert to celcius
