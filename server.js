@@ -33,13 +33,14 @@ app.get('/', function (req, res) {
 
 // Serving today's weather.
 app.post('/today', function (req, res) {
-//    var now = new Date();
-//    var requestedTime = now.toISOString().substr(0,19)+'Z';
+    let now = new Date();
+    //date, string 'YYYY-MM-DD'.
+    let requestedTime = now.toISOString().substr(0,10);
 
     forecast
     .latitude(req.body.lat)            // required: latitude, string.
     .longitude(req.body.lng)          // required: longitude, string.
-    .time('2016-01-28')             // optional: date, string 'YYYY-MM-DD'.
+    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
     .units('ca')                    // optional: units, string, refer to API documentation.
     .language('en')                 // optional: language, string, refer to API documentation.
     .exclude('minutely,daily')      // optional: exclude, string, refer to API documentation.
@@ -58,10 +59,10 @@ app.post('/today', function (req, res) {
 // serving historical data
 app.post('/yesterday', function (req, res) {
     // Get yesterday date.
-//    var now = new Date();
-//    var yesterday = new Date();
-//    yesterday.setDate(now.getDate()-1);
-//    var requestedTime = yesterday.toISOString().substr(0,19)+'Z';
+    let now = new Date();
+    let yesterday = new Date();
+    yesterday.setDate(now.getDate()-1);
+    let requestedTime = yesterday.toISOString().substr(0,10);
     
     //Fetching and parsing weather information
 //    getWeather(req, requestedTime, function (returned){
@@ -70,7 +71,7 @@ app.post('/yesterday', function (req, res) {
      forecast
     .latitude(req.body.lat)            // required: latitude, string.
     .longitude(req.body.lng)          // required: longitude, string.
-    .time('2016-01-28')             // optional: date, string 'YYYY-MM-DD'.
+    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
     .units('ca')                    // optional: units, string, refer to API documentation.
     .language('en')                 // optional: language, string, refer to API documentation.
     .exclude('minutely,daily')      // optional: exclude, string, refer to API documentation.
