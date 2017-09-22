@@ -1,5 +1,5 @@
-# Warmer.Pro
-A new type of weather applicatio
+# WarmerToday-Alpha
+A new type of weather application.
 [Beta](http://Warmer.today) is deployed and avaliable for the public. This is the code base for Alpha version that is no longer maintained. You can find the Beta version source code here once its released in Fall 2017.
 Powered by [Dark Sky](https://darksky.net/poweredby/).
 
