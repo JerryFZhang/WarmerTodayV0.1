@@ -1,8 +1,6 @@
 # Warmer.Pro
-A new type of weather application.
-
-[Alpha](http://Warmer.pro) is deployed and avaliable for the public. Beta will be abaliavle for public use sometimes in January. And it will be rewritten to use some new JS features and NewAPI
-
+A new type of weather applicatio
+[Beta](http://Warmer.today) is deployed and avaliable for the public. This is the code base for Alpha version that is no longer maintained. You can find the Beta version source code here once its released in Fall 2017.
 Powered by [Dark Sky](https://darksky.net/poweredby/).
 
 # Acknowlengements
@@ -23,14 +21,14 @@ Powered by [Dark Sky](https://darksky.net/poweredby/).
 - jsonfile
 
 
-#Todos
+# Todos
 See Issues tab.
 
-#Author
+# Author
 Fengwei Jerry Zhang - zhang96
 
 
-#Contribution
+# Contribution
 You are more than welcome to fork the repo and add features, fix bugs etc. But please submit issues before sending pull requests.
 **Beware of your personal forecase.io API code, keep it private, do not include it in the pull request.**
 
